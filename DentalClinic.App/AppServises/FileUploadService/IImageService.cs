@@ -2,6 +2,7 @@
 
 namespace DentalClinic.app.AppServices.FileUploadService
 {
+    //Service To Upload Files
     public interface IImageService
     {
         public string uploadImage(string FolderName, IFormFile Image);
