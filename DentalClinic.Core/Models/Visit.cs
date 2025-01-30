@@ -12,23 +12,28 @@ namespace DentalClinic.Core.Models
     {
         public int Id { get; set; }
         
+
         public DateTime Date { get; set; }
 
+
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(8)]
-        public string Type { get; set; } //زيارة جديدة , مراجعة
+        public VisitType Type { get; set; }
 
 
-        public string TreatmentPlan { get; set; }
+        public List<Image> Images { get; set; }
+
+
+        public string? TreatmentPlan { get; set; }
+
 
         public List<Treatment> Treatments { get; set; }
 
 
         public int AppointmentId { get; set; }
-
         public Appointment Appointment { get; set; }
 
-        public int PatientId { get; set; }
 
+        public int PatientId { get; set; }
         public Patient Patient { get; set; }
 
 

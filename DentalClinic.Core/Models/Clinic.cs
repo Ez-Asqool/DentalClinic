@@ -15,14 +15,18 @@ namespace DentalClinic.Core.Models
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(120)]
         public string Name { get; set; }
 
+
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(20)]
         public string Phone { get; set; }
+
 
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(150)]
         public string Address { get; set; }
 
+
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(150)]
-        public string LogoName { get; set; }
+        public string? LogoName { get; set; }
+
 
         public List<Room> Rooms { get; set; }
     }

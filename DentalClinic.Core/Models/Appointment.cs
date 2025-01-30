@@ -13,7 +13,7 @@ namespace DentalClinic.Core.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(10)]
-        public string Type { get; set; } //new, review
+        public VisitType Type { get; set; } 
 
         public DateTime Date { get; set; }
 

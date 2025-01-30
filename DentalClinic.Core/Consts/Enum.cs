@@ -10,11 +10,16 @@ namespace DentalClinic.Core.Consts
     {
     }
 
-    //Publications, Agreements and Laws
-    public enum PALType 
+    public enum VisitType 
     {
-        Publication,
-        AgreementAndLaw
+        New,
+        Review
+    }
+
+    public enum Gender
+    {
+        Male,
+        Female
     }
 
 }

@@ -15,35 +15,44 @@ namespace DentalClinic.Core.Models
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(50)]
         public string Name { get; set; }
 
+
+        [Required(ErrorMessage = Messages.ErrorMessage)]
         public DateTime DateOfBirth { get; set; }
+
 
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(3)]
         public int Age { get; set; }
 
+
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(50)]
-        public string Job { get; set; }
+        public string? Job { get; set; }
+
 
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(50)]
         public string Address { get; set; }
 
+
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(8)]
-        public string Gender { get; set; } //enum
+        public Gender Gender { get; set; } 
+
 
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(20)]
         public string Firstphone { get; set; }
 
-        [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(20)]
-        public string Secondphone { get; set; }
 
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(20)]
-        public string PersonalIDNumber { get; set; }
+        public string? Secondphone { get; set; }
+
+
+        [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(20)]
+        public string? PersonalIDNumber { get; set; }
 
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(50)]
-        public string InsuranceCardNumber { get; set; }
+        public string? InsuranceCardNumber { get; set; }
 
 
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(1000)]
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
 
         public int DoctorId { get; set; }
         public Doctor Doctor { get; set; }

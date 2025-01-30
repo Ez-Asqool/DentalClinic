@@ -11,11 +11,15 @@ namespace DentalClinic.Core.Models
     public class Room : BaseModel
     {
         public int Id { get; set; }
+
+
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(5)]
         public int Number { get; set; }
 
+
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(50)]
         public string? Name { get; set; }
+
 
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(1000)]
         public string? Description { get; set; }
