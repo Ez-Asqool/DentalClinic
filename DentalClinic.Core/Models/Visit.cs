@@ -33,8 +33,8 @@ namespace DentalClinic.Core.Models
         public Appointment Appointment { get; set; }
 
 
-        public int PatientId { get; set; }
-        public Patient Patient { get; set; }
+        //public int PatientId { get; set; }
+        //public Patient Patient { get; set; }
 
 
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DentalClinic.Core.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,15 @@ namespace DentalClinic.EF.Data
             
         }
 
+		public DbSet<Room> Rooms { get; set; }
+		public DbSet<Clinic> Clinic { get; set; }
+		public DbSet<Visit> Visits { get; set; }
+		public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<Patient> Patients { get; set; }
+        public DbSet<Treatment> Treatments { get; set; }    
+        
 
 
     }

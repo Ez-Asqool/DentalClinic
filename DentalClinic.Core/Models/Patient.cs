@@ -60,7 +60,7 @@ namespace DentalClinic.Core.Models
 
         public List<Appointment> Appointments { get; set; }
 
-        public List<Visit> Visits { get; set; }
+        //public List<Visit> Visits { get; set; }
 
     }
 }
