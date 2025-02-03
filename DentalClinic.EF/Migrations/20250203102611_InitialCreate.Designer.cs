@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DentalClinic.EF.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250203095828_ulterTableVisit")]
-    partial class ulterTableVisit
+    [Migration("20250203102611_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

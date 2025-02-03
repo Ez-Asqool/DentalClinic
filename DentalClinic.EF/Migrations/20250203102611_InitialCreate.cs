@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DentalClinic.EF.Migrations
 {
     /// <inheritdoc />
-    public partial class addDbTables : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -156,7 +156,6 @@ namespace DentalClinic.EF.Migrations
                     Type = table.Column<int>(type: "int", maxLength: 8, nullable: false),
                     TreatmentPlan = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AppointmentId = table.Column<int>(type: "int", nullable: false),
-                    PatientId = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<int>(type: "int", nullable: false)
@@ -168,12 +167,6 @@ namespace DentalClinic.EF.Migrations
                         name: "FK_Visits_Appointments_AppointmentId",
                         column: x => x.AppointmentId,
                         principalTable: "Appointments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Visits_Patients_PatientId",
-                        column: x => x.PatientId,
-                        principalTable: "Patients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -262,11 +255,6 @@ namespace DentalClinic.EF.Migrations
                 table: "Visits",
                 column: "AppointmentId",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Visits_PatientId",
-                table: "Visits",
-                column: "PatientId");
         }
 
         /// <inheritdoc />
