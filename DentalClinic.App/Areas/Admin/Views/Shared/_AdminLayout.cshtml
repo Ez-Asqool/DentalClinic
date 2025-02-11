@@ -53,20 +53,32 @@ License: For each use you must have a valid license purchased only from above li
 	<!--end::Global Stylesheets Bundle-->
 	<style>
 		/* Override the sidebar logo, menu, and footer background color */
+		/*
 		.d-flex {
 			background-color: #cfbd16 !important; /* Gold color */ /*e6d329  cfbd16*/
-			998b08 background-image: none !important;      /* Remove any background images or gradients */
-		}
-
+			/*background-image: none !important;      /* Remove any background images or gradients */
+		/*}*/
+		
 		.clinic-title {
 			font-size: 38px; /* Bold and readable size */
 			font-weight: bold; /* Strong emphasis */
-			color: black; /* Bold red color */
 			font-family: 'Arial', sans-serif; /* Clean sans-serif font */
-			margin-top: 20px; /* Move text a bit down */
+			margin-top: 18px; /* Move text a bit down */
 			text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4); /* Heavy shadow effect */
 		}
+
+		.modal-content input.form-control {
+			text-align: center !important;
+		}
+		select option {
+			text-align: center !important;
+		}
+
+
 	</style>
+
+	@await RenderSectionAsync("Links", required: false)
+
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -500,11 +512,11 @@ License: For each use you must have a valid license purchased only from above li
 										<!--begin:Menu item-->
 										<div class="menu-item">
 											<!--begin:Menu link-->
-											<a class="menu-link" href="../../demo1/dist/index.html">
+											<a class="menu-link" asp-area="Admin" asp-controller="Doctor" asp-action="Index">
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title" style="font-size: 17px;">عرض الأطباء</span>
+												<span class="menu-title" style="font-size: 17px;" >عرض الأطباء</span>
 											</a>
 											<!--end:Menu link-->
 										</div>
@@ -5275,6 +5287,7 @@ License: For each use you must have a valid license purchased only from above li
 	<script src="assets/assets/js/custom/utilities/modals/create-app.js"></script>
 	<script src="assets/assets/js/custom/utilities/modals/users-search.js"></script>
 	<!--end::Custom Javascript-->
+	@await RenderSectionAsync("Scripts", required: false)			
 	<!--end::Javascript-->
 </body>
 <!--end::Body-->

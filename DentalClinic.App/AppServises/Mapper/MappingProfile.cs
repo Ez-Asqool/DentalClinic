@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using DentalClinic.Core.Models;
+using DentalClinic.Core.ViewModels.DoctorVMs;
 
 namespace DentalClinic.App.AppServises.Mapper
 {
@@ -6,7 +8,11 @@ namespace DentalClinic.App.AppServises.Mapper
     {
         public MappingProfile()
         {
-            
+            //Doctor
+            CreateMap<Room, IndexVM>();
+            CreateMap<AddDoctorVM, Doctor>();
+            CreateMap<Doctor, UpdateDoctorVM>().ReverseMap();    
+            CreateMap<Doctor, DetailsDoctorVM>();
         }
     }
 }

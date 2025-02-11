@@ -1,4 +1,5 @@
 ﻿using DentalClinic.Core.Consts;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DentalClinic.Core.Models
+namespace DentalClinic.Core.ViewModels.DoctorVMs
 {
-    public class Doctor : BaseModel
+    public class UpdateDoctorVM
     {
         public int Id { get; set; }
 
@@ -24,15 +25,11 @@ namespace DentalClinic.Core.Models
         public DateTime DateOfBirth { get; set; }
 
 
-        [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(4)]
-        public int Age { get; set; }
+        [Required(ErrorMessage = Messages.ErrorMessage), Range(0, 70)]
+        public int ExperienceYears { get; set; }
 
 
-		[Required(ErrorMessage = Messages.ErrorMessage), Range(0, 70)]
-		public int ExperienceYears { get; set; }
-
-
-        [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(4)]
+        [Required(ErrorMessage = Messages.ErrorMessage)]
         public int GraduationYear { get; set; }
 
 
@@ -43,17 +40,14 @@ namespace DentalClinic.Core.Models
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(50)]
         public string Email { get; set; }
 
-
-        [MaxLength(150)]
+        public IFormFile? Image { get; set; }
         public string? ImageName { get; set; }
 
-
-        [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(8)]
-        public Gender Gender { get; set; } 
-
-        public List<Patient> Patients { get; set; }
+        [Required(ErrorMessage = Messages.ErrorMessage)]
+        public Gender Gender { get; set; }
 
         public int RoomId { get; set; }
-        public Room Room { get; set; }
+
+        public List<IndexVM>? Rooms { get; set; }
     }
 }

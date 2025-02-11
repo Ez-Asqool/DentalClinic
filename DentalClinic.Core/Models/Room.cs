@@ -25,7 +25,7 @@ namespace DentalClinic.Core.Models
         public string? Description { get; set; }
 
 
-        public Doctor Doctor { get; set; }
+        public List<Doctor> Doctor { get; set; }
 
         public int ClinicId { get; set; }
 

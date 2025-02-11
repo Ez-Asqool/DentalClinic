@@ -1,5 +1,8 @@
+using DentalClinic.app.AppServices.FileUploadService;
 using DentalClinic.App.AppServises.Mapper;
+using DentalClinic.Core.Repositories;
 using DentalClinic.EF.Data;
+using DentalClinic.EF.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +15,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
 
+builder.Services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+builder.Services.AddTransient(typeof(IDoctorRepository), typeof(DoctorRepository));
+builder.Services.AddTransient(typeof(IRoomRepository), typeof(RoomRepository));
+builder.Services.AddTransient(typeof(IImageService), typeof(ImageService));
 //Auto Mapper.
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
