@@ -18,7 +18,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 builder.Services.AddTransient(typeof(IDoctorRepository), typeof(DoctorRepository));
 builder.Services.AddTransient(typeof(IRoomRepository), typeof(RoomRepository));
+builder.Services.AddTransient(typeof(IClinicRepository), typeof(ClinicRepository));
+builder.Services.AddTransient(typeof(IPatientRepository), typeof(PatientRepository));
 builder.Services.AddTransient(typeof(IImageService), typeof(ImageService));
+
+
 //Auto Mapper.
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 

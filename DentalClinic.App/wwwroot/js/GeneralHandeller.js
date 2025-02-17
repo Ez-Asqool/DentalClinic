@@ -4,6 +4,11 @@
 
         // Create a new FormData object
         var formData = new FormData(this);
+
+        // Log all keys and values
+        //for (var pair of formData.entries()) {
+        //    console.log(pair[0] + ": " + pair[1]);
+        //}
         var file = formData.get('Image'); // Get the uploaded file
 
         // If no file is uploaded, submit the form directly
@@ -235,7 +240,7 @@ function updateHandeller(tableSelector, postUrlAddress, getUrlAddress,successMes
                 var formData = new FormData(this);
 
                 var file = formData.get('Image'); // Get the uploaded file
-                if (file.size !== 0) {
+                if (file && file.size != 0) {
                     // Define header signatures for valid image formats
                     var validHeaders = [
                         [0xFF, 0xD8, 0xFF, 0xE0], // JPEG

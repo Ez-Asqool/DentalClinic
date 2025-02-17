@@ -6,30 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DentalClinic.Core.Models
+namespace DentalClinic.Core.ViewModels.RoomVMs
 {
-    public class Room : BaseModel
+    public class UpdateRoomVM
     {
         public int Id { get; set; }
-
 
         [Required(ErrorMessage = Messages.ErrorMessage)]
         public int Number { get; set; }
 
-
         [MaxLength(50)]
         public string? Name { get; set; }
 
-
         [MaxLength(1000)]
         public string? Description { get; set; }
-
-
-        public List<Doctor> Doctors { get; set; }
-
-        public int ClinicId { get; set; }
-
-        public Clinic Clinic { get; set; }
-
     }
 }

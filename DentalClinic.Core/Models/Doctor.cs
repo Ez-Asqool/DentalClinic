@@ -24,7 +24,7 @@ namespace DentalClinic.Core.Models
         public DateTime DateOfBirth { get; set; }
 
 
-        [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(4)]
+        [Required(ErrorMessage = Messages.ErrorMessage)]
         public int Age { get; set; }
 
 

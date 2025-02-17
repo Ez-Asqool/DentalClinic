@@ -12,6 +12,7 @@ namespace DentalClinic.Core.Models
     {
         public int Id { get; set; }
 
+
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(50)]
         public string Name { get; set; }
 
@@ -20,11 +21,15 @@ namespace DentalClinic.Core.Models
         public DateTime DateOfBirth { get; set; }
 
 
-        [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(3)]
+        [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(8)]
+        public Gender Gender { get; set; }
+
+
+        [Required(ErrorMessage = Messages.ErrorMessage)]
         public int Age { get; set; }
 
 
-        [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(50)]
+        [MaxLength(50)]
         public string? Job { get; set; }
 
 
@@ -32,30 +37,28 @@ namespace DentalClinic.Core.Models
         public string Address { get; set; }
 
 
-        [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(8)]
-        public Gender Gender { get; set; } 
-
-
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(20)]
         public string Firstphone { get; set; }
 
 
-        [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(20)]
+        [MaxLength(20)]
         public string? Secondphone { get; set; }
 
 
-        [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(20)]
+        [MaxLength(20)]
         public string? PersonalIDNumber { get; set; }
 
-        [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(50)]
+
+        [MaxLength(50)]
         public string? InsuranceCardNumber { get; set; }
 
 
-        [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(1000)]
+        [MaxLength(1000)]
         public string? Notes { get; set; }
 
-        public int DoctorId { get; set; }
-        public Doctor Doctor { get; set; }
+
+        //public int DoctorId { get; set; }
+        //public Doctor Doctor { get; set; }
 
 
         public List<Appointment> Appointments { get; set; }

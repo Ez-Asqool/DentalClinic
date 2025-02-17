@@ -1,5 +1,5 @@
 ﻿@using DentalClinic.Core.Consts
-@model DentalClinic.Core.ViewModels.DoctorVMs.AddDoctorVM
+@model DentalClinic.Core.ViewModels.PatientVMs.AddPatientVM
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -21,7 +21,7 @@
                 <!--begin::Modal header-->
                 <div class="modal-header" id="kt_modal_new_item_header">
                     <!--begin::Modal title-->
-                    <h1>إضافة طبيب جديد</h1>
+                    <h1>إضافة مريض جديد</h1>
                     <!--end::Modal title-->
                     <!--begin::Close-->
                     <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -43,6 +43,7 @@
                     <div class="scroll-y me-n7 pe-7" id="kt_modal_new_item_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_new_item_header" data-kt-scroll-wrappers="#kt_modal_new_item_scroll" data-kt-scroll-offset="300px">
                         <!--begin::Input group-->
                         <div class="row mb-5">
+                            <!--begin::Input group-->
                             <!--begin::Col-->
                             <div class="row mb-5">
                                 <div class="col-md-6 fv-row">
@@ -63,7 +64,7 @@
                                 <!--begin::Input-->
                                 <select asp-for="Gender" class="form-control fs-4 form-control-solid" required>
                                     <option value="@Gender.Male">ذكر</option>
-                                    <option value="@Gender.Female">انثى</option>    
+                                    <option value="@Gender.Female">انثى</option>
                                 </select>
                                 <!--end::Input-->
                             </div>
@@ -71,81 +72,68 @@
                             <!--begin::Input group-->
                             <div class=" flex-column mb-5 fv-row">
                                 <!--begin::Label-->
-                                <label class="required fs-3 fw-semibold mb-2" asp-for="JobNumber">الرقم الوظيفي</label>
+                                <label class="required fs-3 fw-semibold mb-2" asp-for="Job">الوظيفة</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="number" asp-for="JobNumber" class="form-control fs-4 form-control-solid" placeholder="" required />
+                                <input type="text" asp-for="Job" class="form-control fs-4 form-control-solid" placeholder="" required />
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
                             <!--begin::Input group-->
                             <div class=" flex-column mb-5 fv-row">
                                 <!--begin::Label-->
-                                <label class="required fs-3 fw-semibold mb-2" asp-for="ExperienceYears">سنوات الخبرة</label>
+                                <label class="required fs-3 fw-semibold mb-2" asp-for="Address">العنوان</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="number" asp-for="ExperienceYears" class="form-control fs-4 form-control-solid" placeholder="" required />
+                                <input type="text" asp-for="Address" class="form-control fs-4 form-control-solid" placeholder="" required />
                                 <!--end::Input-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <!--begin::Col-->
+                            <div class="row mb-5">
+                                <div class="col-md-6 fv-row">
+                                    <label class="required fs-3 fw-semibold mb-2" asp-for="Firstphone">رقم الجوال الرئيسي</label>
+                                    <input type="number" asp-for="Firstphone" class="form-control fs-4 form-control-solid" required />
+                                </div>
+                                <div class="col-md-6 fv-row">
+                                    <label class="required fs-3 fw-semibold mb-2" asp-for="Secondphone">رقم الجوال الثانوي</label>
+                                    <input type="number" asp-for="Secondphone" class="form-control fs-4 form-control-solid" required />
+                                </div>
                             </div>
                             <!--end::Input group-->
                             <!--begin::Input group-->
                             <div class="flex-column mb-5 fv-row">
                                 <!--begin::Label-->
-                                <label class="required fs-3 fw-semibold mb-2" asp-for="GraduationYear">سنة التخرج</label>
+                                <label class="required fs-3 fw-semibold mb-2" asp-for="PersonalIDNumber">رقم الهوية</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="number" asp-for="GraduationYear" class="form-control fs-4 form-control-solid" placeholder="" required />
+                                <input type="number" asp-for="PersonalIDNumber" class="form-control fs-4 form-control-solid" placeholder="" required />
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
                             <!--begin::Input group-->
                             <div class=" flex-column mb-5 fv-row">
                                 <!--begin::Label-->
-                                <label class="required fs-3 fw-semibold mb-2" asp-for="Phone">رقم الجوال</label>
+                                <label class="required fs-3 fw-semibold mb-2" asp-for="InsuranceCardNumber">بطاقة التأمين</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="number" asp-for="Phone" class="form-control fs-4 form-control-solid" placeholder="" required />
+                                <input type="text" asp-for="InsuranceCardNumber" class="form-control fs-4 form-control-solid" placeholder="" required />
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
                             <!--begin::Input group-->
                             <div class=" flex-column mb-5 fv-row">
                                 <!--begin::Label-->
-                                <label class="required fs-3 fw-semibold mb-2" asp-for="Email">الايميل</label>
+                                <label class="required fs-3 fw-semibold mb-2" asp-for="Notes">ملاحظات أخرى(إختياري)</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" asp-for="Email" class="form-control fs-4 form-control-solid" placeholder="" required />
+                                <textarea asp-for="Notes" class="form-control fs-4 form-control-solid" rows="6"></textarea>
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
-                            <!--begin::Input group-->
-                            <div class=" flex-column mb-5 fv-row">
-                                <!--begin::Label-->
-                                <label class="required fs-3 fw-semibold mb-2" asp-for="RoomId">الغرفة</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <select asp-for="RoomId" class="form-control fs-4 form-control-solid" placeholder="" required>
-                                    @foreach (var room in Model.Rooms)
-                                    {
-                                        <option value="@room.Id">@room.Number</option>
-                                    }
-                                </select>
-                                <!--end::Input-->
-                            </div>
-                            <!--end::Input group-->
-                            <!--begin::Input group-->
-                            <div class=" flex-column mb-5 fv-row">
-                                <!--begin::Label-->
-                                <label class="required fs-3 fw-semibold mb-2"asp-for="Image">الصورة (إختياري)</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="file" asp-for="Image" class="form-control fs-4 form-control-solid" placeholder="" />
-                                <!--end::Input-->
-                            </div>
-                            <!--end::Input group-->
-                            
                         </div>
-                    <!--end::Scroll-->
+                        <!--end::Scroll-->
                     </div>
                 </div>
                 <!--end::Modal body-->
@@ -171,5 +159,3 @@
     </div>
 </div>
 <!--end::Modal - New Item-->
-
-

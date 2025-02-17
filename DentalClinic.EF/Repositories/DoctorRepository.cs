@@ -27,10 +27,10 @@ namespace DentalClinic.EF.Repositories
 			var sortColumn = Request.Form[string.Concat("columns[", Request.Form["order[0][column]"], "][name]")];
 			var sortColumnDirection = Request.Form["order[0][dir]"];
 
-			IQueryable<Doctor> gaza = _context.Doctors.Where(x => x.IsDeleted == 0).AsQueryable();
+			IQueryable<Doctor> doctor = _context.Doctors.Where(x => x.IsDeleted == 0).AsQueryable();
 			if (!string.IsNullOrEmpty(searchValue))
 			{
-				gaza = gaza.Where(x =>
+				doctor = doctor.Where(x =>
 				string.IsNullOrEmpty(searchValue) ? true :
 				(x.Name.Contains(searchValue)) ||
 				(x.Age.ToString().Contains(searchValue)));
@@ -40,13 +40,13 @@ namespace DentalClinic.EF.Repositories
 			
             if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDirection)))
             {
-                gaza = gaza.OrderBy(string.Concat(sortColumn, " ", sortColumnDirection));
+				doctor = doctor.OrderBy(string.Concat(sortColumn, " ", sortColumnDirection));
             }
             
-			var data = gaza.Skip(skip).Take(pageSize).ToList();
+			var data = doctor.Skip(skip).Take(pageSize).ToList();
 
 
-			var recordsTotal = gaza.Count();
+			var recordsTotal = doctor.Count();
 
 			var jsonData = new
 			{

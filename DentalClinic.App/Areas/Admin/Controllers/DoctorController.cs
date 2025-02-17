@@ -30,7 +30,7 @@ namespace DentalClinic.App.Areas.Admin.Controllers
         [HttpGet]
 		public IActionResult Index()
 		{
-			var rooms = _roomRepository.GetAll();
+			var rooms = _roomRepository.FindAll(x=> x.IsDeleted == 0);
 			var addDoctorVM = new AddDoctorVM();
 			addDoctorVM.Rooms = _mapper.Map<List<IndexVM>>(rooms);
 
@@ -46,6 +46,11 @@ namespace DentalClinic.App.Areas.Admin.Controllers
 				if(addDoctorVM.Image != null)
 				{
 					var imageName = _imageService.uploadImage("AppImages/DoctorImages", addDoctorVM.Image);
+					newDoctor.ImageName = imageName;
+				}
+				else
+				{
+					newDoctor.ImageName = "blank.png";
 				}
 				var Age = (DateTime.Now.Year - addDoctorVM.DateOfBirth.Year);
 				newDoctor.Age = Age;
@@ -64,7 +69,7 @@ namespace DentalClinic.App.Areas.Admin.Controllers
 
 
 			var updateDoctorVM = _mapper.Map<UpdateDoctorVM>(doctorExists);
-            var rooms = _roomRepository.GetAll();
+            var rooms = _roomRepository.FindAll(x=> x.IsDeleted == 0);
 			updateDoctorVM.Rooms = _mapper.Map<List<IndexVM>>(rooms);
             return PartialView("/Areas/Admin/Views/Doctor/Update.cshtml", updateDoctorVM);
         }

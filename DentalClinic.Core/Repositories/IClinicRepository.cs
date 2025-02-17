@@ -1,5 +1,4 @@
 ﻿using DentalClinic.Core.Models;
-using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace DentalClinic.Core.Repositories
 {
-	public interface IRoomRepository : IBaseRepository<Room>
+	public interface IClinicRepository : IBaseRepository<Clinic>
 	{
-		public object DataTableAlldata(HttpRequest Request);
 	}
 }

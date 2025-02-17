@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace DentalClinic.Core.Repositories
 {
-	public interface IRoomRepository : IBaseRepository<Room>
-	{
-		public object DataTableAlldata(HttpRequest Request);
-	}
+    public interface IPatientRepository : IBaseRepository<Patient>
+    {
+        public object DataTableAlldata(HttpRequest Request);
+    }
 }

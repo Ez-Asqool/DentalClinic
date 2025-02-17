@@ -15,8 +15,17 @@ namespace DentalClinic.EF.Data
         {
             
         }
+        /*
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Clinic>().HasData(
+                new Clinic { Id = 1, Name = "عيادة ... لطب وجراحة الفم والأسنان", Phone = "0595****", Address = "....", LogoName = "ADD LOGO" }
+            );
 
-		public DbSet<Room> Rooms { get; set; }
+            base.OnModelCreating(modelBuilder);
+        }
+        */
+        public DbSet<Room> Rooms { get; set; }
 		public DbSet<Clinic> Clinic { get; set; }
 		public DbSet<Visit> Visits { get; set; }
 		public DbSet<Appointment> Appointments { get; set; }

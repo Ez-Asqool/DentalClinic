@@ -4,6 +4,7 @@ using DentalClinic.EF.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DentalClinic.EF.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250212061135_MakeNameAndDescriptionColumnsNullableInRoomTable")]
+    partial class MakeNameAndDescriptionColumnsNullableInRoomTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -113,6 +116,7 @@ namespace DentalClinic.EF.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Age")
+                        .HasMaxLength(4)
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
@@ -208,6 +212,7 @@ namespace DentalClinic.EF.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("Age")
+                        .HasMaxLength(3)
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
@@ -216,7 +221,7 @@ namespace DentalClinic.EF.Migrations
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DoctorId")
+                    b.Property<int>("DoctorId")
                         .HasColumnType("int");
 
                     b.Property<string>("Firstphone")
@@ -229,6 +234,7 @@ namespace DentalClinic.EF.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("InsuranceCardNumber")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -236,6 +242,7 @@ namespace DentalClinic.EF.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Job")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -245,14 +252,17 @@ namespace DentalClinic.EF.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Notes")
+                        .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("PersonalIDNumber")
+                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Secondphone")
+                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
@@ -292,6 +302,7 @@ namespace DentalClinic.EF.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("Number")
+                        .HasMaxLength(5)
                         .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -410,7 +421,7 @@ namespace DentalClinic.EF.Migrations
             modelBuilder.Entity("DentalClinic.Core.Models.Doctor", b =>
                 {
                     b.HasOne("DentalClinic.Core.Models.Room", "Room")
-                        .WithMany("Doctors")
+                        .WithMany("Doctor")
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -431,9 +442,13 @@ namespace DentalClinic.EF.Migrations
 
             modelBuilder.Entity("DentalClinic.Core.Models.Patient", b =>
                 {
-                    b.HasOne("DentalClinic.Core.Models.Doctor", null)
+                    b.HasOne("DentalClinic.Core.Models.Doctor", "Doctor")
                         .WithMany("Patients")
-                        .HasForeignKey("DoctorId");
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
                 });
 
             modelBuilder.Entity("DentalClinic.Core.Models.Room", b =>
@@ -492,7 +507,7 @@ namespace DentalClinic.EF.Migrations
 
             modelBuilder.Entity("DentalClinic.Core.Models.Room", b =>
                 {
-                    b.Navigation("Doctors");
+                    b.Navigation("Doctor");
                 });
 
             modelBuilder.Entity("DentalClinic.Core.Models.Visit", b =>
