@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DentalClinic.Core.Models;
+using DentalClinic.Core.ViewModels.AppointmentVMs;
 using DentalClinic.Core.ViewModels.ClinicVMs;
 using DentalClinic.Core.ViewModels.DoctorVMs;
 using DentalClinic.Core.ViewModels.PatientVMs;
@@ -26,7 +27,12 @@ namespace DentalClinic.App.AppServises.Mapper
             CreateMap<Clinic, DentalClinic.Core.ViewModels.ClinicVMs.IndexVM>().ReverseMap();
 
             //Patient
-            CreateMap<AddPatientVM, Patient>(); 
+            CreateMap<AddPatientVM, Patient>();
+            CreateMap<Patient, UpdatePatientVM>().ReverseMap();
+            CreateMap<Patient, DetailsPatientVM>();
+
+            //Appointment
+            CreateMap<AddAppointmentVM, Appointment>();
 
         }
     }

@@ -16,30 +16,13 @@
         ],
         "columns": [
             { "data": "id", "name": "Id", "autowidth": true },
-            {
-                "render": function (data, type, row) {
-                    return `<a href="#" class="btn-details text-dark text-hover-primary "  
-                             data-bs-toggle="modal" data-bs-target="#kt_modal_details" 
-                             title="عرض التفاصيل" data-id="${row.id}">
-                                ${row.name}
-                            </a>`;
-                },
-                "name": "Name"
-            },
-            { "data": "age", "name": "Age", "autowidth": true },
-            {
-                "render": function (data, type, row) {
-                    return `<div class="table-actions">
-                                <a href="#" class="btn btn-update" data-bs-toggle="modal" data-bs-target="#kt_modal_update" data-id="${row.id}">
-                                    <i class="fas fa-edit"></i> 
-                                </a>
-                                <a href="#" class="btn btn-delete" data-id="${row.id}">
-                                    <i class="fas fa-trash-alt"></i> 
-                                </a>
-                            </div>`;
-                },
-                "orderable": false
-            }
+            { "data": "patient.name", "name": "Name", "autowidth": true },
+            { "data": "doctor.name", "name": "Name", "autowidth": true },
+            { "data": "date", "name": "Date", "autowidth": true },
+            { "data": "timefrom", "name": "TimeFrom", "autowidth": true },
+            { "data": "timeto", "name": "TimeTo", "autowidth": true },
+            { "data": "visit", "name": "Visit", "autowidth": true },
+            
         ],
         "language": {
             "search": "🔍 بحث:",

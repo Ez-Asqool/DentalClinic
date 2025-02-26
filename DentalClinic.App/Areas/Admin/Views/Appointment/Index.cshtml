@@ -1,0 +1,164 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@section Links {
+
+	<link href="~/lib/datatables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+
+	<style>
+		/* Table Header Styling */
+		table.dataTable thead th {
+			font-size: 21px;
+			padding: 15px;
+			text-align: center;
+		}
+
+		/* Table Row Styling */
+		table.dataTable tbody td {
+			font-size: 18px;
+			padding: 12px;
+			text-align: center;
+		}
+
+		/* Button Container */
+		.table-actions {
+			display: flex;
+			gap: 8px;
+			justify-content: center;
+		}
+
+		/* Update Button */
+		.btn-update {
+			/*background-color: #2C3E50; /* Dark navy */
+			color: white;
+			padding: 8px 12px;
+			font-size: 14px;
+			border-radius: 8px;
+			display: flex;
+			align-items: center;
+			gap: 5px;
+		}
+
+			.btn-update:hover {
+				background-color: dimgray /*#1A252F;*/
+			}
+
+		/* Delete Button */
+		.btn-delete {
+			/*background-color: #C0392B; /* Dark red */
+			color: white;
+			padding: 8px 12px;
+			font-size: 14px;
+			border-radius: 8px;
+			display: flex;
+			align-items: center;
+			gap: 5px;
+		}
+
+			.btn-delete:hover {
+				background-color: #d33 /*#A93226;*/
+			}
+
+		/* Search Input Field */
+		.dataTables_filter input {
+			border-radius: 8px;
+			padding: 5px;
+			border: 1px solid;
+		}
+
+		/* Pagination Buttons */
+		/*.dataTables_paginate .paginate_button {
+					background-color: white !important; /* Match header #D4A017 */
+		/*color: black !important;
+					border-radius: 5px;
+					padding: 5px 10px;
+				}
+
+					.dataTables_paginate .paginate_button:hover {
+						background-color: black !important; /*#B8860B*/
+		/*}*/
+	</style>
+}
+
+
+<!--begin::Toolbar-->
+<div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+	<!--begin::Toolbar container-->
+	<div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
+	</div>
+	<!--end::Toolbar container-->
+</div>
+<!--end::Toolbar-->
+<!--begin::Content-->
+<div id="kt_app_content" class="app-content flex-column-fluid">
+	<!--begin::Content container-->
+	<div id="kt_app_content_container" class="app-container container-fluid">
+
+		<!--begin::Row-->
+		<div class="row gx-6 gx-xl-10">
+
+			<!--begin::Col-->
+			<div class="col-xl-12">
+				<!--begin::Chart widget 24-->
+				<div class="card card-flush overflow-hidden h-xl-100">
+					<!--begin::Header-->
+					<div class="card-header py-5">
+						<!--begin::Title-->
+						<h3 class="card-title align-items-start flex-column">
+							<span class="card-label fw-bold text-dark" style="font-size:30px;">الحجوزات</span>
+							<span class="text-gray-400 mt-3 fw-semibold fs-4" style="font-size:22px;">كافة الحجوزات</span>
+						</h3>
+						<!--end::Title-->
+						
+					</div>
+					<!--end::Header-->
+					<!--begin::Card body-->
+					<div class="card-body pt-0">
+						<!--begin::Main content-->
+						<div class="min-h-auto">
+							<div class="container">
+
+								<table id="appointment" class="table table-striped table-bordered">
+									<thead>
+										<tr>
+											<th>Id</th>
+											<th>المريض</th>
+											<th>الطبيب</th>
+											<th>التاريخ</th>
+											<th>من</th>
+											<th>إلى</th>
+											<th>نوع الحجز</th>
+											<th>حالة الزيارة</th>
+										</tr>
+									</thead>
+								</table>
+
+
+							</div>
+						</div>
+						<!--end::Main content-->
+					</div>
+					<!--end::Card body-->
+				</div>
+				<!--end::Chart widget 24-->
+			</div>
+			<!--end::Col-->
+		</div>
+		<!--end::Row-->
+	</div>
+	<!--end::Content container-->
+</div>
+<!--end::Content-->
+
+@section Scripts
+{
+
+	<script src="~/lib/datatables/js/jquery.dataTables.js"></script>
+	<script src="~/lib/datatables/js/dataTables.bootstrap4.js"></script>
+	<script src="~/js/datatables/appointmentDatatable.js"></script>
+
+}

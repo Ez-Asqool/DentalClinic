@@ -82,6 +82,9 @@ namespace DentalClinic.App.Areas.Admin.Controllers
 				var doctorExists = _doctorRepository.GetById(updateDoctorVM.Id);
 				if (doctorExists == null || doctorExists.IsDeleted == 1)
 					return NotFound();
+				
+				if(updateDoctorVM.DateOfBirth != doctorExists.DateOfBirth)
+					doctorExists.Age = (DateTime.Now.Year - updateDoctorVM.DateOfBirth.Year);
 
 				_mapper.Map(updateDoctorVM, doctorExists);
 

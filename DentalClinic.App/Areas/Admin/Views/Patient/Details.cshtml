@@ -1,0 +1,200 @@
+﻿@using DentalClinic.Core.Consts
+@model DentalClinic.Core.ViewModels.PatientVMs.DetailsPatientVM
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+
+<div class="modal fade" id="kt_modal_details" tabindex="-1" data-bs-backdrop="static" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-950px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Form-->
+            <form class="form" method="post" enctype="multipart/form-data" id="kt_modal_details_form">
+                <!--begin::Modal header-->
+                <div class="modal-header" id="kt_modal_details_header">
+                    <!--begin::Modal title-->
+                    <h1>معلومات المريض</h1>
+                    <!--end::Modal title-->
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary btn-hide" data-bs-dismiss="modal">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body py-10 px-lg-17">
+                    <!--begin::Scroll-->
+                    <div class="scroll-y me-n7 pe-7" id="kt_modal_details_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_new_address_header" data-kt-scroll-wrappers="#kt_modal_details_scroll" data-kt-scroll-offset="300px">
+                        
+                        <div class="container card card-flush overflow-hidden ">
+                            <div class="patient-card">
+                                <!-- Right Section -->
+                                <div class="text-center">
+                                    <img src="~/AppImages/PatientImages/patient.png" class="patient-image" alt="Patient Image">
+                                    <p class="patient-name">@Model.Name</p>
+                                    <p class="blood-type">@Model.Address</p>
+
+                                    <button class="btn-green">حجز موعد زيارة جديدة</button>
+                                </div>
+
+                                <!-- Left Section -->
+                                <div class="patient-info">
+                                    <h2 style="color: #e85b82;">6</h2>
+                                    <p>عدد الزيارات</p>
+                                    <div class="visits">
+                                        <span class="visit-badge">6</span>
+                                        <span class="visit-badge">5</span>
+                                        <span class="visit-badge">4</span>
+                                        <span class="visit-badge">3</span>
+                                        <span class="visit-badge">2</span>
+                                        <span class="visit-badge">1</span>
+                                    </div>
+
+                                    <div class="info-grid">
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="container card card-flush overflow-hidden">
+                            <div class="main-card">
+
+                                <!-- First Row -->
+                                <div class="row">
+                                    <div class="col">
+                                        <label class=" fs-3 fw-semibold mb-2" asp-for="Name">الاسم</label>
+                                        <input type="text" asp-for="Name" class="form-control fs-4 form-control-solid" disabled />
+                                    </div>
+                                    <div class="col">
+                                        <label class=" fs-3 fw-semibold mb-2" asp-for="DateOfBirth">تاريخ الميلاد</label>
+                                        <input type="date" asp-for="DateOfBirth" class="form-control fs-4 form-control-solid" disabled />
+                                    </div>
+                                </div>
+
+                                <!-- Second Row -->
+                                <div class="row">
+                                    <div class="col">
+                                        <!--begin::Label-->
+                                        <label class=" fs-3 fw-semibold mb-2" asp-for="Gender">الجنس</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <select asp-for="Gender" class="form-control fs-4 form-control-solid" disabled>
+                                            <option value="@Gender.Male">ذكر</option>
+                                            <option value="@Gender.Female">انثى</option>
+                                        </select>
+                                        <!--end::Input-->
+                                    </div>
+                                    <div class="col">
+                                        <!--begin::Label-->
+                                        <label class=" fs-3 fw-semibold mb-2" asp-for="Age">العمر</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="text" asp-for="Age" class="form-control fs-4 form-control-solid" placeholder="" disabled />
+                                        <!--end::Input-->
+                                    </div>
+                                </div>
+
+                                <!-- Third Row -->
+                                <div class="row">
+                                    <div class="col">
+                                        <!--begin::Label-->
+                                        <label class=" fs-3 fw-semibold mb-2" asp-for="Address">العنوان</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="text" asp-for="Address" class="form-control fs-4 form-control-solid" placeholder="" disabled />
+                                        <!--end::Input-->
+                                    </div>
+                                    <div class="col">
+                                        <!--begin::Label-->
+                                        <label class=" fs-3 fw-semibold mb-2" asp-for="PersonalIDNumber">رقم الهوية</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="number" asp-for="PersonalIDNumber" class="form-control fs-4 form-control-solid" placeholder="" disabled />
+                                        <!--end::Input-->
+                                    </div>
+                                </div>
+
+                                <!-- Third Row -->
+                                <div class="row">
+                                    <div class="col">
+                                        <label class=" fs-3 fw-semibold mb-2" asp-for="Firstphone">رقم الجوال الرئيسي</label>
+                                        <input type="number" asp-for="Firstphone" class="form-control fs-4 form-control-solid" disabled />
+                                    </div>
+                                    <div class="col">
+                                        <label class=" fs-3 fw-semibold mb-2" asp-for="Secondphone">رقم الجوال الثانوي</label>
+                                        <input type="number" asp-for="Secondphone" class="form-control fs-4 form-control-solid" disabled />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <!--begin::Label-->
+                                        <label class=" fs-3 fw-semibold mb-2" asp-for="InsuranceCardNumber">بطاقة التأمين</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="text" asp-for="InsuranceCardNumber" class="form-control fs-4 form-control-solid" placeholder="" disabled />
+                                        <!--end::Input-->
+                                    </div>
+                                    <div class="col">
+                                        <!--begin::Label-->
+                                        <label class=" fs-3 fw-semibold mb-2" asp-for="Job">الوظيفة</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="text" asp-for="Job" class="form-control fs-4 form-control-solid" placeholder="" disabled />
+                                        <!--end::Input-->
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!--begin::Label-->
+                                    <label class=" fs-3 fw-semibold mb-2" asp-for="Notes">ملاحظات أخرى</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <textarea asp-for="Notes" class="form-control fs-4 form-control-solid" rows="6" disabled></textarea>
+                                    <!--end::Input-->
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                                                        
+                    </div>
+                    <!--end::Scroll-->
+                </div>
+                <!--end::Modal body-->
+                <!--begin::Modal footer-->
+                <div class="modal-footer flex-center">
+                    <!--begin::Button-->
+                        <button type="reset" data-bs-dismiss="modal" class="btn btn-light me-3 fs-4 btn-closee">إخفاء</button>
+                    <!--end::Button-->
+                    <!--begin::Button-->
+                    @*<button type="submit" id="kt_modal_update_submit" class="btn btn-primary">
+                    <span class="indicator-label">Update</span>
+                    <span class="indicator-progress">
+                    Please wait...
+                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                    </span>
+                    </button>*@
+                    <!--end::Button-->
+                </div>
+                <!--end::Modal footer-->
+            </form>
+            <!--end::Form-->
+        </div>
+    </div>
+</div>
+<!--end::Modal - New Address-->
