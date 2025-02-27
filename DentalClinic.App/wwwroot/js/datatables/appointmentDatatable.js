@@ -9,11 +9,11 @@
         },
     "columns": [
         { "data": "id", "name": "Id" },
-        { "data": "patientName", "name": "PatientName", orderable: true },
-        {"data": "doctorName", "name": "DoctorName" },
+        { "data": "patientName", "name": "PatientName", orderable: false},
+        { "data": "doctorName", "name": "DoctorName", orderable: false  },
         {"data": "date", "name": "Date" },
-        {"data": "timeFrom", "name": "Time From" },
-        {"data": "timeTo", "name": "Time To" },
+        { "data": "timeFrom", "name": "Time From", orderable: false },
+        { "data": "timeTo", "name": "Time To", orderable: false },
         {
             "data": "type",
             "name": "Type",
@@ -27,7 +27,7 @@
                 }
             }
         },
-        {"data": "visitStatus", "name": "Visit Status" }
+        { "data": "visitStatus", "name": "Visit Status", orderable: false }
     ],
     "language": {
         "search": "🔍 بحث:",
@@ -47,3 +47,5 @@
         table.search(this.value).draw();
     });
 });
+
+

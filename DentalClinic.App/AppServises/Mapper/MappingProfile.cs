@@ -33,6 +33,7 @@ namespace DentalClinic.App.AppServises.Mapper
 
             //Appointment
             CreateMap<AddAppointmentVM, Appointment>();
+            CreateMap<Appointment, TodayAppointmentVM>();
 
         }
     }

@@ -49,19 +49,7 @@ namespace DentalClinic.App.Areas.Admin.Controllers
             return View(addAppointmentVM);
         }
 
-        [HttpPost]
-        public IActionResult Check(AddAppointmentVM addAppointmentVM) 
-        {
-            var appointments = _appointmentRepository.FindAll(a=> a.Date == addAppointmentVM.Date && a.DoctorId == addAppointmentVM.DoctorId);
-            
-            foreach (var appointment in appointments)
-                if (appointment.TimeFrom == addAppointmentVM.TimeFrom)
-                    return StatusCode(400);
-
-            return StatusCode(200);
-        }
-
-
+        
         [HttpPost]
         public IActionResult Add(AddAppointmentVM addAppointmentVM)
         {
@@ -76,13 +64,34 @@ namespace DentalClinic.App.Areas.Admin.Controllers
                         return StatusCode(400);
 
                 var newAppointment = _mapper.Map<Appointment>(addAppointmentVM);
+                
                 _appointmentRepository.Add(newAppointment); 
                 return StatusCode(200);
             }
             return BadRequest();    
         }
 
+		[HttpPost]
+		public IActionResult Check(AddAppointmentVM addAppointmentVM)
+		{
+			var appointments = _appointmentRepository.FindAll(a => a.Date == addAppointmentVM.Date && a.DoctorId == addAppointmentVM.DoctorId);
+
+			foreach (var appointment in appointments)
+				if (appointment.TimeFrom == addAppointmentVM.TimeFrom)
+					return StatusCode(400);
+
+			return StatusCode(200);
+		}
+
+        [HttpGet]
+        public IActionResult Today()
+        {
+            var todayAppointments = _appointmentRepository.FindAll(x => x.Date.Date == DateTime.Now.Date, ["Doctor", "Patient", "Visit"]);
+            var todayAppointmentsVm = _mapper.Map<List<TodayAppointmentVM>>(todayAppointments);
+            return View(todayAppointmentsVm);
+        }
 
 
-    }
+
+	}
 }
