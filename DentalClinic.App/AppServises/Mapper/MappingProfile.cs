@@ -5,6 +5,7 @@ using DentalClinic.Core.ViewModels.ClinicVMs;
 using DentalClinic.Core.ViewModels.DoctorVMs;
 using DentalClinic.Core.ViewModels.PatientVMs;
 using DentalClinic.Core.ViewModels.RoomVMs;
+using DentalClinic.Core.ViewModels.VisitVMs;
 
 namespace DentalClinic.App.AppServises.Mapper
 {
@@ -34,6 +35,9 @@ namespace DentalClinic.App.AppServises.Mapper
             //Appointment
             CreateMap<AddAppointmentVM, Appointment>();
             CreateMap<Appointment, TodayAppointmentVM>();
+
+            //Visit
+            CreateMap<Visit, DetailsVisitVM>();
 
         }
     }

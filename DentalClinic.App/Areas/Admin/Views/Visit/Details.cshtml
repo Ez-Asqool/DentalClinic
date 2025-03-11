@@ -1,0 +1,415 @@
+﻿@model DentalClinic.Core.ViewModels.VisitVMs.DetailsVisitVM
+
+@section Links
+{
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
+
+    <style>
+        /* Cute and lovely blue theme */
+        body {
+            direction: rtl; /* Keep RTL layout */
+            /*background-color: #e3f2fd; /* Soft blue background */
+            font-family: inherit; /* Use site-wide font */
+        }
+
+        /* Main container */
+        .mcontainer {
+            width: 95%;
+            max-width: 1200px;
+            margin: 30px auto;
+            /*background-color: #ffffff; /* White container */
+            border: 2px solid #90caf9; /* Light blue border */
+            border-radius: 15px; /* Rounded corners */
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .hmcontainer {
+            width: 95%;
+            max-width: 1200px;
+            margin: 30px auto;
+            /*background-color: #ffffff; /* White container */
+            border: 2px solid #90caf9; /* Light blue border */
+            border-radius: 15px; /* Rounded corners */
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            align-content: center;
+            text-align: center;
+        }
+
+        /* Headings */
+        h2 {
+            text-align: right;
+            color: #1565c0; /* Deep blue */
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1em;
+        }
+
+        th, td {
+            color: black !important;
+            text-align: center;
+            font-size:15px;
+            padding: 8px;
+            border: 1px solid #90caf9; /* Light blue borders */
+            background-color: #e3f2fd; /* Very light blue for table cells */
+        }
+
+        /* Inputs */
+        input[type="text"], input[type="number"], select, textarea {
+            width: 90%;
+            padding: 6px;
+            margin: 4px 0;
+            border: 1px solid #64b5f6; /* Soft blue border */
+            border-radius: 5px;
+            background-color: #ffffff;
+            font-family: inherit;
+        }
+
+        /* Buttons */
+        .btn-new, .btn-delete {
+            cursor: pointer;
+            padding: 8px 14px;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn-new {
+            background-color: #42a5f5; /* Soft blue */
+            font-size: 15px;
+        }
+
+            .btn-new:hover {
+                background-color: #1e88e5;
+            }
+
+        .btn-delete {
+            background-color: #ef5350; /* Soft red */
+        }
+
+            .btn-delete:hover {
+                background-color: #e53935;
+            }
+
+        /* Save button */
+        .btn-save {
+            background-color: #1e88e5; /* Blue */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+            float: left;
+            transition: background-color 0.3s;
+        }
+
+            .btn-save:hover {
+                background-color: #1565c0;
+            }
+
+        /* Teeth representation table */
+        .teeth-table {
+            border-collapse: separate;
+            border-spacing: 3px;
+            margin: 0 auto;
+        }
+
+            .teeth-table td {
+                background-color: #ffffff;
+                border: 1px solid #90caf9;
+                border-radius: 4px;
+                width: 30px;
+                text-align: center;
+                padding: 6px;
+            }
+
+                .teeth-table td:hover {
+                    background-color: #bbdefb; /* Light blue hover */
+                }
+
+        .midline {
+            color: blue;
+            border-left: 3px solid #1565c0 !important;
+        }
+
+        .teeth-table input[type="radio"] {
+            transform: scale(1.2);
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        /* Notes */
+        .notes-area {
+            width: 100%;
+            min-height: 80px;
+            border: 1px solid #64b5f6;
+            border-radius: 5px;
+        }
+
+        .mainData {
+            font-size: 22px;
+            color: #1565c0;
+        }
+
+        .file{
+            width: 100%;
+            border: 1px solid #64b5f6;
+            border-radius: 5px;
+        }
+
+        .visit-badge {
+            background-color: #90caf9;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+    </style>
+}
+
+
+<!--begin::Toolbar-->
+<div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+    <!--begin::Toolbar container-->
+    <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
+    </div>
+    <!--end::Toolbar container-->
+</div>
+<!--end::Toolbar-->
+<!--begin::Content-->
+<div id="kt_app_content" class="app-content flex-column-fluid">
+    <!--begin::Content container-->
+    <div id="kt_app_content_container" class="app-container container-fluid">
+
+        <!--begin::Row-->
+        <div class="row gx-6 gx-xl-10">
+
+            <!--begin::Col-->
+            <div class="col-xl-12">
+                <!--begin::Chart widget 24-->
+                <div class="card card-flush overflow-hidden h-xl-100">
+                    <!--begin::Header-->
+                    <div class="card-header py-5">
+                        <!--begin::Title-->
+                        <h3 class="card-title align-items-start flex-column">
+                            <span class="card-label fw-bold text-dark" style="font-size:30px;">تفاصيل الزيارة</span>
+                            <span class="text-gray-400 mt-3 fw-semibold fs-4" style="font-size:22px;">كافة تفاصيل الزيارة الحالية - زيارات سابقة</span>
+                        </h3>
+                        <!--end::Title-->
+
+                    </div>
+                    <!--end::Header-->
+                    <!--begin::Card body-->
+                    <div class="card-body pt-0">
+                        <!--begin::Main content-->
+                        <div class="min-h-auto">
+                            <div class="hmcontainer">
+                                <h3><span class="mainData">كافة الزيارات</span></h3>
+                                
+                                @{
+                                    var visitNo = 0;
+                                    foreach (var visitId in Model.allVisitsIds)
+                                    {
+                                        visitNo++;
+                                        var style = "";
+                                        if (visitId == Model.Id)
+                                        {
+                                            style = "background-color: #1565c0 !important; text-decoration: underline;";
+                                        }
+                                        <a asp-area="Admin" asp-controller="visit" asp-action="Details" asp-route-id="@visitId"><span class="visit-badge" style="@style">@visitNo</span></a>
+                                    }
+                                }
+                            </div>
+
+                            <div id="form-container" class="mcontainer">
+                                <h3>زيارة <span class="mainData">(@(Model.Type.ToString() == "New" ? "جديدة" : "مراجعة"))</span> ناتجة عن حجز رقم <span class="mainData">@Model.AppointmentId</span> بتاريخ <span class="mainData">@Model.AppointmentDate.ToString("yyyy-MM-dd")</span></h3>
+                                <br />
+                                <h3>تمت الزيارة بتاريخ <span class="mainData">@Model.Date.ToString("yyyy-MM-dd")</span></h3>
+                                <br />
+                                <h3 class="row">
+                                    <span class="col">اسم المريض: <span class="mainData">@Model.PatientName</span></span>
+                                    <span class="col">الدكتور المعالج: <span class="mainData">@Model.DoctorName</span></span>
+                                </h3>
+                                <br />
+                                <!-- Initial form section -->
+                                @foreach (var treatment in Model.Treatments)
+                                {
+                                    <div class="form-section">
+                                        <form action="#" method="post">
+                                            <table>
+                                                <tr>
+                                                    <th>مكان المعالجة</th>
+                                                    <th>نوع المعالجة</th>
+                                                    <th>السعر</th>
+                                                    <th>الخصم</th>
+                                                    <th>المجموع</th>
+                                                    <!--<th>حذف</th>-->
+                                                </tr>
+                                                <tr>
+                                                    <!-- Teeth Representation Cell -->
+                                                    <td class="teeth-cell">
+                                                        <!-- Palmer Notation (Multi-Select) -->
+                                                        <table class="teeth-table">
+                                                            <!-- Adult Upper Arch -->
+                                                            <tr>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperLeft8" disabled>8</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperLeft7" disabled>7</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperLeft6" disabled>6</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperLeft5" disabled>5</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperLeft4" disabled>4</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperLeft3" disabled>3</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperLeft2" disabled>2</label></td>
+                                                                <td class="midline"><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperLeft1" disabled>1</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperRight1" disabled>1</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperRight2" disabled>2</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperRight3" disabled>3</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperRight4" disabled>4</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperRight5" disabled>5</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperRight6" disabled>6</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperRight7" disabled>7</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperRight8" disabled>8</label></td>
+                                                            </tr>
+                                                            <!-- Adult Lower Arch -->
+                                                            <tr>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerLeft8" disabled>8</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerLeft7" disabled>7</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerLeft6" disabled>6</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerLeft5" disabled>5</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerLeft4" disabled>4</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerLeft3" disabled>3</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerLeft2" disabled>2</label></td>
+                                                                <td class="midline"><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerLeft1" disabled>1</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth[]" value="LowerRight1" disabled>1</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerRight2" disabled>2</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerRight3" disabled>3</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerRight4" disabled>4</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerRight5" disabled>5</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerRight6" disabled>6</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerRight7" disabled>7</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerRight8" disabled>8</label></td>
+                                                            </tr>
+
+                                                            <!-- Primary (Baby) Upper Arch -->
+                                                            <tr>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperLeftE" disabled>E</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperLeftD" disabled>D</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperLeftC" disabled>C</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperLeftB" disabled>B</label></td>
+                                                                <td class="midline"><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperLeftA" disabled>A</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperRightA" disabled>A</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperRightB" disabled>B</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperRightC" disabled>C</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperRightD" disabled>D</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="UpperRightE" disabled>E</label></td>
+                                                            </tr>
+                                                            <!-- Primary (Baby) Lower Arch -->
+                                                            <tr>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerLeftE" disabled>E</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerLeftD" disabled>D</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerLeftC" disabled>C</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerLeftB" disabled>B</label></td>
+                                                                <td class="midline"><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerLeftA" disabled>A</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerRightA" disabled>A</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerRightB" disabled>B</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerRightC" disabled>C</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerRightD" disabled>D</label></td>
+                                                                <td><label><input type="radio" asp-for="@treatment.PlaceOfTreatment" name="selectedTeeth" value="LowerRightE" disabled>E</label></td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+
+                                                    <!-- Procedure Type -->
+                                                    <td>
+                                                        <input type="text" asp-for="@treatment.TypeOfTreatment" disabled/>
+                                                        <!--
+                                                            <select asp-for="@treatment.TypeOfTreatment" name="procedureType" disabled>
+                                                            <option value="labPostComposite" selected>lab post + composite</option>
+                                                            <option value="extraction">Extraction</option>
+                                                            <option value="filling">Filling</option>
+                                                            <option value="rootCanal">Root Canal</option>
+                                                        </select>
+                                                        -->
+                                                    </td>
+
+                                                    <!-- Price -->
+                                                    <td>
+                                                        <input type="number" asp-for="@treatment.Price" name="price"  disabled />
+                                                    </td>
+
+                                                    <!-- Discount -->
+                                                    <td>
+                                                        <input type="number" asp-for="@treatment.Discount" name="discount"  disabled />
+                                                    </td>
+
+                                                    <!-- Total -->
+                                                    <td>
+                                                        <input type="number" asp-for="@treatment.Total" name="total"  disabled />
+                                                    </td>
+
+
+                                                    <!-- Delete (×) -->
+                                                    <!--<td>
+                                                        <button type="button" class="btn-delete">×</button>
+                                                    </td>-->
+                                                </tr>
+                                            </table>
+
+                                            <br />
+                                            <label for="notes" style="display:block; margin-bottom:5px; color:#1565c0; font-weight:bold; font-size:15px;">
+                                                ملاحظات:
+                                            </label>
+                                            <textarea asp-for="@treatment.Notice" id="notes" name="notes" class="notes-area" disabled></textarea>
+
+                                            <br />
+
+                                            <label for="notes" style="display:block; margin-bottom:5px; color:#1565c0; font-weight:bold; font-size:15px;">
+                                                الصور:
+                                            </label>
+                                            <!--
+                                                <input type="file" asp-for="@treatment.Images" multiple class="file" disabled />
+                                            -->
+                                            <div class="file">
+                                                @foreach (var image in treatment.Images)
+                                                {
+                                                    <img src="~/AppImages/TreatmentImages/@image.Name" width="70px" height="70px"/>    
+                                                }
+                                            </div>
+                                            <!--<input type="number" asp-for="AppointmentId" name="AppointmentId" value="@Model.AppointmentId" hidden />
+                                            -->
+                                            <br /><br />
+                                        </form>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <!--end::Main content-->
+                    <!--end::Card body-->
+                </div>
+                <!--end::Chart widget 24-->
+            </div>
+            <!--end::Col-->
+        </div>
+        <!--end::Row-->
+    </div>
+    <!--end::Content container-->
+</div>
+<!--end::Content-->
+@section Scripts
+{
+   
+
+}

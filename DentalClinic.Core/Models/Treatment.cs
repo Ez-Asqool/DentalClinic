@@ -13,8 +13,8 @@ namespace DentalClinic.Core.Models
         public int Id { get; set; }
 
 
-        [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(1)]
-        public Char PlaceOfTreatment { get; set; }
+        [Required(ErrorMessage = Messages.ErrorMessage)]
+        public string PlaceOfTreatment { get; set; }
 
 
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(50)]
@@ -37,7 +37,9 @@ namespace DentalClinic.Core.Models
         public double Total { get; set; }
 
 
-        public int VisitId { get; set; }
+        public List<Image> Images { get; set; }
+
+
         public Visit Visit { get; set; }
 
 

@@ -1,0 +1,507 @@
+﻿@model DentalClinic.Core.ViewModels.TreatmentVMs.AddTreatmentVM
+
+@section Links
+{
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
+
+    <style>
+        /* Cute and lovely blue theme */
+        body {
+            direction: rtl; /* Keep RTL layout */
+            /*background-color: #e3f2fd; /* Soft blue background */
+            font-family: inherit; /* Use site-wide font */
+        }
+
+        /* Main container */
+        .mcontainer {
+            width: 95%;
+            max-width: 1200px;
+            margin: 30px auto;
+            /*background-color: #ffffff; /* White container */
+            border: 2px solid #90caf9; /* Light blue border */
+            border-radius: 15px; /* Rounded corners */
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Headings */
+        h2 {
+            text-align: right;
+            color: #1565c0; /* Deep blue */
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1em;
+        }
+
+        th, td {
+            color: black !important;
+            text-align: center;
+            font-size:15px;
+            padding: 8px;
+            border: 1px solid #90caf9; /* Light blue borders */
+            background-color: #e3f2fd; /* Very light blue for table cells */
+        }
+
+        /* Inputs */
+        input[type="text"], input[type="number"], select, textarea {
+            width: 90%;
+            padding: 6px;
+            margin: 4px 0;
+            border: 1px solid #64b5f6; /* Soft blue border */
+            border-radius: 5px;
+            background-color: #ffffff;
+            font-family: inherit;
+        }
+
+        /* Buttons */
+        .btn-new, .btn-delete {
+            cursor: pointer;
+            padding: 8px 14px;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn-new {
+            background-color: #42a5f5; /* Soft blue */
+            font-size: 15px;
+        }
+
+            .btn-new:hover {
+                background-color: #1e88e5;
+            }
+
+        .btn-delete {
+            background-color: #ef5350; /* Soft red */
+        }
+
+            .btn-delete:hover {
+                background-color: #e53935;
+            }
+
+        /* Save button */
+        .btn-save {
+            background-color: #1e88e5; /* Blue */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+            float: left;
+            transition: background-color 0.3s;
+        }
+
+            .btn-save:hover {
+                background-color: #1565c0;
+            }
+
+        /* Teeth representation table */
+        .teeth-table {
+            border-collapse: separate;
+            border-spacing: 3px;
+            margin: 0 auto;
+        }
+
+            .teeth-table td {
+                background-color: #ffffff;
+                border: 1px solid #90caf9;
+                border-radius: 4px;
+                width: 30px;
+                text-align: center;
+                padding: 6px;
+            }
+
+                .teeth-table td:hover {
+                    background-color: #bbdefb; /* Light blue hover */
+                }
+
+        .midline {
+            color: blue;
+            border-left: 3px solid #1565c0 !important;
+        }
+
+        .teeth-table input[type="radio"] {
+            transform: scale(1.2);
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        /* Notes */
+        .notes-area {
+            width: 100%;
+            min-height: 80px;
+            border: 1px solid #64b5f6;
+            border-radius: 5px;
+        }
+
+        .mainData {
+            font-size: 22px;
+            color: #1565c0;
+        }
+
+        .file{
+            width: 100%;
+            border: 1px solid #64b5f6;
+            border-radius: 5px;
+        }
+        
+    </style>
+}
+
+
+<!--begin::Toolbar-->
+<div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+    <!--begin::Toolbar container-->
+    <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
+    </div>
+    <!--end::Toolbar container-->
+</div>
+<!--end::Toolbar-->
+<!--begin::Content-->
+<div id="kt_app_content" class="app-content flex-column-fluid">
+    <!--begin::Content container-->
+    <div id="kt_app_content_container" class="app-container container-fluid">
+
+        <!--begin::Row-->
+        <div class="row gx-6 gx-xl-10">
+
+            <!--begin::Col-->
+            <div class="col-xl-12">
+                <!--begin::Chart widget 24-->
+                <div class="card card-flush overflow-hidden h-xl-100">
+                    <!--begin::Header-->
+                    <div class="card-header py-5">
+                        <!--begin::Title-->
+                        <h3 class="card-title align-items-start flex-column">
+                            <span class="card-label fw-bold text-dark" style="font-size:30px;">زيارة جديدة</span>
+                            <span class="text-gray-400 mt-3 fw-semibold fs-4" style="font-size:22px;">قم بإدخال بيانات الزيارة الجديدة</span>
+                        </h3>
+                        <!--end::Title-->
+
+                    </div>
+                    <!--end::Header-->
+                    <!--begin::Card body-->
+                    <div class="card-body pt-0">
+                        <!--begin::Main content-->
+                        <div class="min-h-auto">
+                            <div id="form-container" class="mcontainer">
+                                <h3>زيارة ناتجة عن حجز رقم <span class="mainData">@Model.Appointment.Id</span> بتاريخ <span class="mainData">@Model.Appointment.Date.ToString("yyyy-MM-dd")</span></h3>
+                                <br />
+                                <h3 class="row">
+                                    <span class="col">اسم المريض: <span class="mainData">@Model.Appointment.Patient.Name</span></span>
+                                    <span class="col">الدكتور المعالج: <span class="mainData">@Model.Appointment.Doctor.Name</span></span>
+                                </h3>
+                                <br />
+                                <!-- Initial form section -->
+                                <div class="form-section">
+                                    <form action="#" method="post">
+                                        <table>
+                                            <tr>
+                                                <th>مكان المعالجة</th>
+                                                <th>نوع المعالجة</th>
+                                                <th>السعر</th>
+                                                <th>الخصم</th>
+                                                <th>المجموع</th>
+                                                <th>حذف</th>
+                                            </tr>
+                                            <tr>
+                                                <!-- Teeth Representation Cell -->
+                                                <td class="teeth-cell">
+                                                    <!-- Palmer Notation (Multi-Select) -->
+                                                    <table class="teeth-table">
+                                                        <!-- Adult Upper Arch -->
+                                                        <tr>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperLeft8">8</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperLeft7">7</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperLeft6">6</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperLeft5">5</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperLeft4">4</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperLeft3">3</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperLeft2">2</label></td>
+                                                            <td class="midline"><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperLeft1">1</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperRight1">1</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperRight2">2</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperRight3">3</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperRight4">4</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperRight5">5</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperRight6">6</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperRight7">7</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperRight8">8</label></td>
+                                                        </tr>
+                                                        <!-- Adult Lower Arch -->
+                                                        <tr>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerLeft8">8</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerLeft7">7</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerLeft6">6</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerLeft5">5</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerLeft4">4</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerLeft3">3</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerLeft2">2</label></td>
+                                                            <td class="midline"><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerLeft1">1</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth[]" value="LowerRight1">1</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerRight2">2</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerRight3">3</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerRight4">4</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerRight5">5</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerRight6">6</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerRight7">7</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerRight8">8</label></td>
+                                                        </tr>
+
+                                                        <!-- Primary (Baby) Upper Arch -->
+                                                        <tr>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperLeftE">E</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperLeftD">D</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperLeftC">C</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperLeftB">B</label></td>
+                                                            <td class="midline"><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperLeftA">A</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperRightA">A</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperRightB">B</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperRightC">C</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperRightD">D</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="UpperRightE">E</label></td>
+                                                        </tr>
+                                                        <!-- Primary (Baby) Lower Arch -->
+                                                        <tr>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerLeftE">E</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerLeftD">D</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerLeftC">C</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerLeftB">B</label></td>
+                                                            <td class ="midline"><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerLeftA">A</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerRightA">A</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerRightB">B</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerRightC">C</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerRightD">D</label></td>
+                                                            <td><label><input type="radio" asp-for="PlaceOfTreatment" name="selectedTeeth" value="LowerRightE">E</label></td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+
+                                                <!-- Procedure Type -->
+                                                <td>
+                                                    <select asp-for="TypeOfTreatment" name="procedureType" required>
+                                                        <option value="labPostComposite" selected>lab post + composite</option>
+                                                        <option value="extraction">Extraction</option>
+                                                        <option value="filling">Filling</option>
+                                                        <option value="rootCanal">Root Canal</option>
+                                                    </select>
+                                                </td>
+
+                                                <!-- Price -->
+                                                <td>
+                                                    <input type="number" asp-for="Price" name="price" value="0" required />
+                                                </td>
+
+                                                <!-- Discount -->
+                                                <td>
+                                                    <input type="number" asp-for="Discount" name="discount" value="0" />
+                                                </td>
+
+                                                <!-- Total -->
+                                                <td>
+                                                    <input type="number" asp-for="Total" name="total" value="0" required />
+                                                </td>
+
+
+                                                <!-- Delete (×) -->
+                                                <td>
+                                                    <button type="button" class="btn-delete">×</button>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <br />
+                                        <label for="notes" style="display:block; margin-bottom:5px; color:#1565c0; font-weight:bold; font-size:15px;">
+                                            ملاحظات:
+                                        </label>
+                                        <textarea asp-for="Notice" id="notes" name="notes" class="notes-area" placeholder="أدخل الملاحظات هنا..."></textarea>
+
+                                        <br />
+
+                                        <label for="notes" style="display:block; margin-bottom:5px; color:#1565c0; font-weight:bold; font-size:15px;">
+                                            إضافة صور:
+                                        </label>
+                                        <input type="file" asp-for="Images" multiple class="file" />
+
+                                        <input type="number" asp-for="AppointmentId" name="AppointmentId" value="@Model.AppointmentId" hidden />
+                                        <br /><br />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Global Add Form Button -->
+                        <div class="mcontainer">
+                            <button id="add-form" class="btn btn-primary btn-new">+</button>
+                            <button id="submitAll" type="button" class="btn-save">حفظ بيانات الزيارة</button>
+                        </div>
+                    </div>
+
+                    
+                    <!--end::Main content-->
+                    <!--end::Card body-->
+                </div>
+                <!--end::Chart widget 24-->
+            </div>
+            <!--end::Col-->
+        </div>
+        <!--end::Row-->
+    </div>
+    <!--end::Content container-->
+</div>
+<!--end::Content-->
+
+
+@section Scripts
+{
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+          // When clicking the "Add" button, clone the last form section and clear its inputs.
+          document.getElementById("add-form").addEventListener("click", function(){
+            var container = document.getElementById("form-container");
+            var formSections = container.getElementsByClassName("form-section");
+            if(formSections.length > 0) {
+              var lastSection = formSections[formSections.length - 1];
+              // Clone the last section (deep clone)
+              var newSection = lastSection.cloneNode(true);
+      
+              // Clear all input values in the cloned section
+              var inputs = newSection.querySelectorAll("input");
+              inputs.forEach(function(input){
+                if(input.type === "radio") {
+                  input.checked = false;
+                } else {
+                  input.value = "";
+                }
+              });
+              // Clear textarea (if any) in the new section
+              var textarea = newSection.querySelector("textarea");
+              if(textarea) {
+                textarea.value = "";
+              }
+      
+              container.appendChild(newSection);
+            }
+          });
+
+          // Use event delegation on the container for any "Delete" button click.
+          document.getElementById("form-container").addEventListener("click", function(e){
+            // Check if a .btn-delete button (or an element inside it) was clicked.
+            if(e.target && (e.target.classList.contains("btn-delete") || e.target.closest(".btn-delete"))) {
+              var section = e.target.closest(".form-section");
+              var container = document.getElementById("form-container");
+              var formSections = container.getElementsByClassName("form-section");
+              // Only delete if more than one section exists.
+              if(formSections.length > 1) {
+                container.removeChild(section);
+              } else {
+                        Swal.fire({
+                            title: 'خطأ !',
+                            text: "لا يمكن حذف النموذج الأخير.",
+                            icon: 'error',
+                            confirmButtonColor: '#d33',
+                            confirmButtonText: 'حسنا'
+                        });
+                        return; // Stop further execution
+              }
+            }
+          });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("submitAll").addEventListener("click", (e) => {
+                e.preventDefault();
+
+                const forms = document.querySelectorAll("#form-container .form-section form");
+                const formData = new FormData();
+
+                forms.forEach((form, idx) => {
+                    // Collect non-file fields
+                    const radio = form.querySelector('input[name="selectedTeeth"]:checked');
+                    const placeOfTreatment = radio ? radio.value : "";
+
+                    const select = form.querySelector('select[name="procedureType"]');
+                    const typeOfTreatment = select ? select.value : "";
+
+                    const price = form.querySelector('input[name="price"]')?.value || "0";
+                    const discount = form.querySelector('input[name="discount"]')?.value || "0";
+                    const total = form.querySelector('input[name="total"]')?.value || "0";
+                    const notice = form.querySelector('textarea[name="notes"]')?.value || "";
+                    const appointmentId = form.querySelector('input[name="AppointmentId"]')?.value || "0";
+
+                    // Append treatment details using keys for List<AddTreatmentVM> addTreatmentVMs
+                    formData.append(`addTreatmentVMs[${idx}].PlaceOfTreatment`, placeOfTreatment);
+                    formData.append(`addTreatmentVMs[${idx}].TypeOfTreatment`, typeOfTreatment);
+                    formData.append(`addTreatmentVMs[${idx}].Notice`, notice);
+                    formData.append(`addTreatmentVMs[${idx}].Price`, price);
+                    formData.append(`addTreatmentVMs[${idx}].Discount`, discount);
+                    formData.append(`addTreatmentVMs[${idx}].Total`, total);
+                    formData.append(`addTreatmentVMs[${idx}].AppointmentId`, appointmentId);
+
+                    // Append files directly so that they bind to the Images property (List<IFormFile>)
+                    const fileInput = form.querySelector('input[type="file"]');
+                    if (fileInput && fileInput.files.length > 0) {
+                        Array.from(fileInput.files).forEach(file => {
+                            formData.append(`addTreatmentVMs[${idx}].Images`, file);
+                        });
+                    }
+                });
+
+                // (Optional) Debug: log all FormData entries
+                for (let pair of formData.entries()) {
+                    console.log(pair[0], pair[1]);
+                }
+
+                fetch("/Admin/Visit/Add", {
+                    method: "POST",
+                    body: formData // FormData automatically sets Content-Type to multipart/form-data
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.text().then(text => { throw new Error(text); });
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        Swal.fire({
+                            title: 'تم',
+                            text: "تم حفظ بيانات الزيارة بنجاح .",
+                            icon: 'success',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'حسنا',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = '/Admin/Appointment/';
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        Swal.fire({
+                            title: 'خطأ',
+                            text: "حدث خطأ أثناء حفظ بيانات الزيارة", // This will be the failure message from the server
+                            icon: 'error',
+                            confirmButtonColor: '#d33',
+                            confirmButtonText: 'حسنا',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = '/Admin/Appointment/';
+                            }
+                        });;
+                    });
+            });
+        });
+    </script>
+
+}

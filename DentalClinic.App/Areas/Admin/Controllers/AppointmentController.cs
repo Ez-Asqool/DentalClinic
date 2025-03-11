@@ -86,7 +86,7 @@ namespace DentalClinic.App.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Today()
         {
-            var todayAppointments = _appointmentRepository.FindAll(x => x.Date.Date == DateTime.Now.Date, ["Doctor", "Patient", "Visit"]);
+            var todayAppointments = _appointmentRepository.FindAll(x => x.Date.Date == DateTime.Now.Date && x.IsDeleted ==0, ["Doctor", "Patient", "Visit"]);
             var todayAppointmentsVm = _mapper.Map<List<TodayAppointmentVM>>(todayAppointments);
             return View(todayAppointmentsVm);
         }

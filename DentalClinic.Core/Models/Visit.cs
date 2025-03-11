@@ -20,10 +20,10 @@ namespace DentalClinic.Core.Models
         public VisitType Type { get; set; }
 
 
-        public List<Image> Images { get; set; }
+        //public List<Image> Images { get; set; }
 
 
-        public string? TreatmentPlan { get; set; }
+        //public string? TreatmentPlan { get; set; }
 
 
         public List<Treatment> Treatments { get; set; }

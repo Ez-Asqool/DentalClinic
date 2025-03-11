@@ -1,0 +1,380 @@
+﻿@section Links
+{
+    <style>
+    table {
+      border-collapse: collapse;
+      margin-bottom: 1em;
+    }
+    td {
+      border: 1px solid #000;
+      padding: 6px;
+      text-align: center;
+      width: 30px; /* Adjust as needed */
+    }
+    /* Thicker border for the midline between left and right quadrants */
+    .midline {
+      border-left: 3px solid #000 !important;
+    }
+  </style>
+}
+
+<form action="#" method="post">
+  <h2>Adult (Permanent) Teeth</h2>
+  <!-- Upper Arch -->
+  <table>
+    <tr>
+      <!-- Upper Left (8 to 1) -->
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperLeft8" />
+          8
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperLeft7" />
+          7
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperLeft6" />
+          6
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperLeft5" />
+          5
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperLeft4" />
+          4
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperLeft3" />
+          3
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperLeft2" />
+          2
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperLeft1" />
+          1
+        </label>
+      </td>
+
+      <!-- Midline separator -->
+      <td class="midline">
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperRight1" />
+          1
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperRight2" />
+          2
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperRight3" />
+          3
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperRight4" />
+          4
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperRight5" />
+          5
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperRight6" />
+          6
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperRight7" />
+          7
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperRight8" />
+          8
+        </label>
+      </td>
+    </tr>
+  </table>
+
+  <!-- Lower Arch -->
+  <table>
+    <tr>
+      <!-- Lower Left (8 to 1) -->
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerLeft8" />
+          8
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerLeft7" />
+          7
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerLeft6" />
+          6
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerLeft5" />
+          5
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerLeft4" />
+          4
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerLeft3" />
+          3
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerLeft2" />
+          2
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerLeft1" />
+          1
+        </label>
+      </td>
+
+      <!-- Midline separator -->
+      <td class="midline">
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerRight1" />
+          1
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerRight2" />
+          2
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerRight3" />
+          3
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerRight4" />
+          4
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerRight5" />
+          5
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerRight6" />
+          6
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerRight7" />
+          7
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerRight8" />
+          8
+        </label>
+      </td>
+    </tr>
+  </table>
+
+  <h2>Primary (Baby) Teeth</h2>
+  <!-- Upper Arch (E D C B A | A B C D E) -->
+  <table>
+    <tr>
+      <!-- Upper Left (E to A) -->
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperLeftE" />
+          E
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperLeftD" />
+          D
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperLeftC" />
+          C
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperLeftB" />
+          B
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperLeftA" />
+          A
+        </label>
+      </td>
+
+      <!-- Midline separator -->
+      <td class="midline">
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperRightA" />
+          A
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperRightB" />
+          B
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperRightC" />
+          C
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperRightD" />
+          D
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="UpperRightE" />
+          E
+        </label>
+      </td>
+    </tr>
+  </table>
+
+  <!-- Lower Arch (E D C B A | A B C D E) -->
+  <table>
+    <tr>
+      <!-- Lower Left (E to A) -->
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerLeftE" />
+          E
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerLeftD" />
+          D
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerLeftC" />
+          C
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerLeftB" />
+          B
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerLeftA" />
+          A
+        </label>
+      </td>
+
+      <!-- Midline separator -->
+      <td class="midline">
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerRightA" />
+          A
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerRightB" />
+          B
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerRightC" />
+          C
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerRightD" />
+          D
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="radio" name="selectedTooth" value="LowerRightE" />
+          E
+        </label>
+      </td>
+    </tr>
+  </table>
+
+  <br />
+  <button type="submit">Submit</button>
+</form>
+
+@section Scripts
+{
+   
+
+}

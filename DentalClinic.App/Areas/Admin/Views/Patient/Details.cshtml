@@ -52,15 +52,19 @@
 
                                 <!-- Left Section -->
                                 <div class="patient-info">
-                                    <h2 style="color: #e85b82;">6</h2>
+                                    
+                                    <h2 style="color: #e85b82;">@Model.allVisitsIds.Count</h2>
                                     <p>عدد الزيارات</p>
                                     <div class="visits">
-                                        <span class="visit-badge">6</span>
-                                        <span class="visit-badge">5</span>
-                                        <span class="visit-badge">4</span>
-                                        <span class="visit-badge">3</span>
-                                        <span class="visit-badge">2</span>
-                                        <span class="visit-badge">1</span>
+                                        @{
+                                            var visitNo = 1;
+                                            foreach (var visitId in Model.allVisitsIds)
+                                            {
+                                                <a asp-area="Admin" asp-controller="visit" asp-action="Details" asp-route-id="@visitId"><span class="visit-badge">@visitNo</span></a>
+                                                visitNo++;
+                                            }
+                                        }
+                                        
                                     </div>
 
                                     <div class="info-grid">

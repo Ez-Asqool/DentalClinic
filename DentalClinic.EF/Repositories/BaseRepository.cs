@@ -49,7 +49,30 @@ namespace DentalClinic.EF.Repositories
 			return query.SingleOrDefault(criteria);
 		}
 
-		public IEnumerable<T> FindAll(Expression<Func<T, bool>> criteria, string[] includes = null)
+        public T FindWithThenFind(Expression<Func<T, bool>> criteria, string[] includes = null, string[] thenIncludes = null)
+        {
+            IQueryable<T> query = _context.Set<T>();
+
+            if (includes != null)
+            {
+                for (int i = 0; i < includes.Length; i++)
+                {
+                    // If thenIncludes is provided for the same index and is not empty, build a dot-separated path.
+                    if (thenIncludes != null && thenIncludes.Length > i && !string.IsNullOrWhiteSpace(thenIncludes[i]))
+                    {
+                        query = query.Include($"{includes[i]}.{thenIncludes[i]}");
+                    }
+                    else
+                    {
+                        query = query.Include(includes[i]);
+                    }
+                }
+            }
+
+            return query.SingleOrDefault(criteria);
+        }
+
+        public IEnumerable<T> FindAll(Expression<Func<T, bool>> criteria, string[] includes = null)
 		{
 			IQueryable<T> query = _context.Set<T>();
 			if (includes != null)

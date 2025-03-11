@@ -22,6 +22,13 @@
 			text-align: center;
 		}
 
+		.start {
+			border-radius: 50px;
+			border: 2px solid green;
+		}
+		a{
+			color: black;
+		}
 		/* Button Container */
 		.table-actions {
 			display: flex;
@@ -150,7 +157,12 @@
 												<td>
 													@(appointment.Visit != null ? "تمت" : "لم تتم")
 												</td>
-												<td class="btn btn-outline-success btn-borderd-success" >بدأ الزيارة</td>
+												<td >
+													@if (appointment.Visit == null)
+													{
+														<a class="btn btn-outline-primary start" asp-area="Admin" asp-controller="Visit" asp-action="Add" asp-route-Id="@appointment.Id"> بدأ الزيارة</a>
+													}
+												</td>
 											</tr>
 										}
 									</tbody>

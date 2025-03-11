@@ -177,6 +177,31 @@ namespace DentalClinic.EF.Migrations
                     b.ToTable("Doctors");
                 });
 
+            modelBuilder.Entity("DentalClinic.Core.Models.Finance", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int>("FinanceType")
+                        .HasMaxLength(9)
+                        .HasColumnType("int");
+
+                    b.Property<double>("price")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Finances");
+                });
+
             modelBuilder.Entity("DentalClinic.Core.Models.Image", b =>
                 {
                     b.Property<int>("Id")
@@ -189,12 +214,12 @@ namespace DentalClinic.EF.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("VisitId")
+                    b.Property<int>("TreatmentId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VisitId");
+                    b.HasIndex("TreatmentId");
 
                     b.ToTable("Images");
                 });
@@ -334,8 +359,7 @@ namespace DentalClinic.EF.Migrations
 
                     b.Property<string>("PlaceOfTreatment")
                         .IsRequired()
-                        .HasMaxLength(1)
-                        .HasColumnType("nvarchar(1)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Price")
                         .HasMaxLength(5)
@@ -382,9 +406,6 @@ namespace DentalClinic.EF.Migrations
 
                     b.Property<int>("IsDeleted")
                         .HasColumnType("int");
-
-                    b.Property<string>("TreatmentPlan")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Type")
                         .HasMaxLength(8)
@@ -433,13 +454,13 @@ namespace DentalClinic.EF.Migrations
 
             modelBuilder.Entity("DentalClinic.Core.Models.Image", b =>
                 {
-                    b.HasOne("DentalClinic.Core.Models.Visit", "Visit")
+                    b.HasOne("DentalClinic.Core.Models.Treatment", "Treatment")
                         .WithMany("Images")
-                        .HasForeignKey("VisitId")
+                        .HasForeignKey("TreatmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Visit");
+                    b.Navigation("Treatment");
                 });
 
             modelBuilder.Entity("DentalClinic.Core.Models.Patient", b =>
@@ -508,10 +529,13 @@ namespace DentalClinic.EF.Migrations
                     b.Navigation("Doctors");
                 });
 
-            modelBuilder.Entity("DentalClinic.Core.Models.Visit", b =>
+            modelBuilder.Entity("DentalClinic.Core.Models.Treatment", b =>
                 {
                     b.Navigation("Images");
+                });
 
+            modelBuilder.Entity("DentalClinic.Core.Models.Visit", b =>
+                {
                     b.Navigation("Treatments");
                 });
 #pragma warning restore 612, 618

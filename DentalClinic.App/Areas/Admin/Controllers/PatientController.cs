@@ -86,11 +86,20 @@ namespace DentalClinic.App.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Details(int id)
         {
-            var patientExists = _patientRepository.GetById(id);
+            var patientExists = _patientRepository.FindWithThenFind(x=>x.Id == id, ["Appointments"], ["Visit"]);
             if (patientExists == null || patientExists.IsDeleted == 1)
                 return NotFound();
 
             var detailsPatientVM = _mapper.Map<DetailsPatientVM>(patientExists);
+            detailsPatientVM.allVisitsIds = new List<int>();
+            foreach (var appointment in patientExists.Appointments)
+            {
+                if (appointment.Visit != null)
+                {
+                    detailsPatientVM.allVisitsIds.Add(appointment.Visit.Id);
+                }
+            }
+            detailsPatientVM.allVisitsIds.Sort();
             return PartialView("/Areas/Admin/Views/Patient/Details.cshtml", detailsPatientVM);
         }
 

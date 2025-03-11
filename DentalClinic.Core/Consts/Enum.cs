@@ -22,4 +22,11 @@ namespace DentalClinic.Core.Consts
         Female
     }
 
+    public enum FinanceType
+    {
+        Purchase,   //مشتريات
+        Income,     //مدخولات
+        Expense,    //مصروفات
+    }
+
 }

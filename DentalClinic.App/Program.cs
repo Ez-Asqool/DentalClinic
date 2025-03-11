@@ -21,6 +21,9 @@ builder.Services.AddTransient(typeof(IRoomRepository), typeof(RoomRepository));
 builder.Services.AddTransient(typeof(IClinicRepository), typeof(ClinicRepository));
 builder.Services.AddTransient(typeof(IPatientRepository), typeof(PatientRepository));
 builder.Services.AddTransient(typeof(IAppointmentRepository), typeof(AppointmentRepository));
+builder.Services.AddTransient(typeof(IVisitRepository), typeof(VisitRepository));
+builder.Services.AddTransient(typeof(ITreatmentRepository), typeof(TreatmentRepository));
+builder.Services.AddTransient(typeof(IImageRepository), typeof(ImageRepository));
 builder.Services.AddTransient(typeof(IImageService), typeof(ImageService));
 
 

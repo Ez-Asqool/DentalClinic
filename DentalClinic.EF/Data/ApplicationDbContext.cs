@@ -33,6 +33,7 @@ namespace DentalClinic.EF.Data
         public DbSet<Image> Images { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Treatment> Treatments { get; set; }    
+        public DbSet<Finance> Finances { get; set; }    
         
 
 

@@ -16,7 +16,10 @@ namespace DentalClinic.Core.Repositories
 
 		T Find(Expression<Func<T, bool>> criteria, string[] includes = null);
 
-		IEnumerable<T> FindAll(Expression<Func<T, bool>> criteria, string[] includes = null);
+		public T FindWithThenFind(Expression<Func<T, bool>> criteria, string[] includes = null, string[] thenIncludes = null);
+
+
+        IEnumerable<T> FindAll(Expression<Func<T, bool>> criteria, string[] includes = null);
 
 		IEnumerable<T> FindAll(Expression<Func<T, bool>> criteria,
 			int? take, int? skip, string[] includes = null,

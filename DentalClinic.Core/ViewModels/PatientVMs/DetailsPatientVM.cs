@@ -1,4 +1,5 @@
 ﻿using DentalClinic.Core.Consts;
+using DentalClinic.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -44,5 +45,8 @@ namespace DentalClinic.Core.ViewModels.PatientVMs
 
 
 		public string? Notes { get; set; }
-	}
+
+
+        public List<int> allVisitsIds { get; set; }
+    }
 }
