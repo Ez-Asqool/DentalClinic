@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DentalClinic.Core.Models
+namespace DentalClinic.Core.ViewModels.FinanceVMs
 {
-    public class Finance : BaseModel
+    public class UpdateFinanceVM
     {
         public int Id { get; set; }
 
@@ -17,7 +17,7 @@ namespace DentalClinic.Core.Models
         public string Category { get; set; }
 
 
-        [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(9)]
+        //[Required(ErrorMessage = Messages.ErrorMessage), MaxLength(9)]
         public FinanceType FinanceType { get; set; }
 
 

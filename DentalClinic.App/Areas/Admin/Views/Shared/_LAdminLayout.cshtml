@@ -83,7 +83,7 @@ License: For each use you must have a valid license purchased only from above li
 			color: black;
 		}
 		.date-label{
-			padding-left: 22px;
+			padding-left: 8px;
 		}
 
 		.fa-calendar, .fa-clock {
@@ -131,7 +131,7 @@ License: For each use you must have a valid license purchased only from above li
 			<!--begin::Header-->
 			<div id="kt_app_header" class="app-header">
 				<!--begin::Header container-->
-				<div class="app-container container-fluid d-flex align-items-stretch justify-content-between" id="kt_app_header_container">
+				<div class="app-container container-fluid d-flex align-items-stretch justify-content-between" id="kt_app_header_container" >
 					<!--begin::Sidebar mobile toggle-->
 					<div class="d-flex align-items-center d-lg-none ms-n3 me-1 me-md-2" title="Show sidebar menu">
 						<div class="btn btn-icon btn-active-color-primary w-35px h-35px" id="kt_app_sidebar_mobile_toggle">
@@ -509,7 +509,7 @@ License: For each use you must have a valid license purchased only from above li
 						<!--begin::Logo image-->
 						<a class="silena" href="../../demo1/dist/index.html">
 							<!--<img alt="Logo" src="~/assets/assets/media/logos/default.svg" class="h-25px app-sidebar-logo-default theme-light-show" /> -->
-							<p class="silena h-25px app-sidebar-logo-default theme-light-show">Silena Clinic</p>
+							<p class="silena h-25px app-sidebar-logo-default theme-light-show">Dental Clinic</p>
 							<img alt="Logo" src="~/assets/assets/media/logos/default-dark.svg" class="h-25px app-sidebar-logo-default theme-dark-show" />
 							<img alt="Logo" src="~/assets/assets/media/logos/default-small.svg" class="h-20px app-sidebar-logo-minimize" />
 						</a>
@@ -706,6 +706,63 @@ License: For each use you must have a valid license purchased only from above li
 										<!--end:Menu item-->
 
 
+									</div>
+									<!--end:Menu sub-->
+								</div>
+								<!--end:Menu item-->
+								<!--begin:Menu item-->
+								<div data-kt-menu-trigger="click" class="menu-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Finance" ? "here show" : "") menu-accordion">
+									<!--begin:Menu link-->
+									<span class="menu-link">
+										<span class="menu-icon">
+											<!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+											<span class="svg-icon svg-icon-2">
+												<svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#1f1f1f"><path d="M447.67-120v-84.67Q392-215.33 354.83-249q-37.16-33.67-53.83-88.33l62-25.34q16.33 48 47.5 72t77.17 24q45.66 0 75.83-22.16Q593.67-311 593.67-352T568-415.83Q542.33-438.67 465-464q-76.67-24.33-111-62.17Q319.67-564 319.67-620q0-58.33 37.66-95 37.67-36.67 90.34-41.67V-840h66.66v83.33q46.67 6 79.17 31.84Q626-699 642.33-660l-62 26.67q-13.33-32-36.33-47t-61-15q-45.33 0-71 20.5t-25.67 54.16q0 36.34 30 58.34T525-516.67q68.33 20.67 101.83 61.5 33.5 40.84 33.5 99.84 0 65.66-38.66 103.66-38.67 38-107.34 48.34V-120h-66.66Z" /></svg>
+											</span>
+											<!--end::Svg Icon-->
+										</span>
+										<span class="menu-title" style="font-size: 20px;">الملف المالي</span>
+										<span class="menu-arrow"></span>
+									</span>
+									<!--end:Menu link-->
+									<!--begin:Menu sub-->
+									<div class="menu-sub menu-sub-accordion">
+										<!--begin:Menu item-->
+										<div class="menu-item">
+											<!--begin:Menu link-->
+											<a class="menu-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Finance" && ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")" asp-area="Admin" asp-controller="Finance" asp-action="Index">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+												<span class="menu-title" style="font-size: 17px;">الرئيسية</span>
+											</a>
+											<!--end:Menu link-->
+										</div>
+										<!--end:Menu item-->
+										<!--begin:Menu item-->
+										<div class="menu-item">
+											<!--begin:Menu link-->
+											<a class="menu-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Finance" && ViewContext.RouteData.Values["Action"].ToString() == "Purchase" ? "active" : "")" asp-area="Admin" asp-controller="Finance" asp-action="Purchase">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+												<span class="menu-title" style="font-size: 17px;">المشتريات</span>
+											</a>
+											<!--end:Menu link-->
+										</div>
+										<!--end:Menu item-->
+										<!--begin:Menu item-->
+										<div class="menu-item">
+											<!--begin:Menu link-->
+											<a class="menu-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Finance" && ViewContext.RouteData.Values["Action"].ToString() == "Expense" ? "active" : "")" asp-area="Admin" asp-controller="Finance" asp-action="Expense">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+												<span class="menu-title" style="font-size: 17px;">المصروفات</span>
+											</a>
+											<!--end:Menu link-->
+										</div>
+										<!--end:Menu item-->
 									</div>
 									<!--end:Menu sub-->
 								</div>

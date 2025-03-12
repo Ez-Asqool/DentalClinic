@@ -1,0 +1,445 @@
+﻿@model DentalClinic.Core.ViewModels.FinanceVMs.IndexVM
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@section Links {
+	<style>
+		.mr{
+			margin-right: 200px;
+		}
+
+		.mrl {
+			margin-right: 150px;
+		}
+
+		
+		
+	</style>
+}
+
+
+<!--begin::Toolbar-->
+<div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+	<!--begin::Toolbar container-->
+	<div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
+	</div>
+	<!--end::Toolbar container-->
+</div>
+<!--end::Toolbar-->
+<!--begin::Content-->
+<div id="kt_app_content" class="app-content flex-column-fluid">
+	<!--begin::Content container-->
+	<div id="kt_app_content_container" class="app-container container-fluid">
+
+		<!--begin::Row-->
+		<div class="row gx-6 gx-xl-10">
+
+			<!--begin::Col-->
+			<div class="col-xl-12">
+				<!--begin::Chart widget 24-->
+				<div class="card card-flush overflow-hidden h-xl-100">
+					<!--begin::Header-->
+					<div class="card-header py-5">
+						<!--begin::Title-->
+						<h3 class="card-title align-items-start flex-column">
+							<span class="card-label fw-bold text-dark" style="font-size:30px;">الملف المالي</span>
+							<span class="text-gray-400 mt-3 fw-semibold fs-4" style="font-size:22px;">الملخص (اليومي - الأسبوعي - الشهري - السنوي) للملف المالي</span>
+						</h3>
+						
+						<!--end::Title-->
+						<!--begin::Toolbar-->
+						<div class="card-toolbar">
+							<form method="get" asp-area="Admin" asp-controller="Finance" asp-action="Index" class="d-flex align-items-center">
+								<input type="date" asp-for="date" class="form-control fs-2 form-control-solid me-2" style="width: auto;" required />
+								<button type="submit" id="kt_modal_new_item_submit" class="btn btn-primary">
+									<span class="indicator-label fs-4">بحث</span>
+									<span class="indicator-progress">
+										Please wait...
+										<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+									</span>
+								</button>
+							</form>
+						</div>
+						<!--end::Toolbar-->
+					</div>
+					<!--end::Header-->
+					<!--begin::Card body-->
+					<div class="card-body pt-0">
+						<!--begin::Main content-->
+						<div class="min-h-auto">
+							<div class="container">
+
+								<div class="row g-5 g-xl-10 mb-5 mb-xl-10">
+									
+									<!--begin::Col-->
+									<div class=" mrl col-md-8 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10">
+										<!--begin::Card widget 17-->
+										<div class="card card-flush h-md-50 mb-5 mb-xl-10">
+											<!--begin::Header-->
+											<div class="card-header pt-5" style="justify-content:center;">
+												<!--begin::Title-->
+												<div class="card-title d-flex flex-column">
+													<!--begin::Info-->
+													<div class="d-flex align-items-center">
+														
+														
+														<h1>الملخص اليومي</h1>
+													</div>
+													<!--end::Info-->
+												</div>
+												<!--end::Title-->
+											</div>
+											<!--end::Header-->
+											<!--begin::Card body-->
+											<div class="card-body pt-2 pb-4 d-flex flex-wrap align-items-center">
+												
+												<!--begin::Labels-->
+												<div class="d-flex flex-column content-justify-center flex-row-fluid">
+													<!--begin::Label-->
+													<div class="d-flex fw-semibold align-items-center">
+														<!--begin::Bullet-->
+														<div class="bullet w-8px h-3px rounded-2 bg-success me-3"></div>
+														<!--end::Bullet-->
+														<!--begin::Label-->
+														<div class="text-gray-500 flex-grow-1 me-4"><h3 class="text text-success">المدخولات</h3></div>
+														<!--end::Label-->
+														<!--begin::Stats-->
+														<div class="fw-bolder text-gray-700 text-xxl-end"><h2 class="text text-success">@Model.dayIncomes شيكل</h2></div>
+														<!--end::Stats-->
+													</div>
+													<!--end::Label-->
+													<!--begin::Label-->
+													<div class="d-flex fw-semibold align-items-center my-3">
+														<!--begin::Bullet-->
+														<div class="bullet w-8px h-3px rounded-2 bg-primary me-3"></div>
+														<!--end::Bullet-->
+														<!--begin::Label-->
+														<div class="text-gray-500 flex-grow-1 me-4"><h3 class="text text-primary">المشتريات</h3></div>
+														<!--end::Label-->
+														<!--begin::Stats-->
+														<div class="fw-bolder text-gray-700 text-xxl-end"><h2 class="text text-primary">@Model.dayPurchases شيكل</h2></div>
+														<!--end::Stats-->
+													</div>
+													<!--end::Label-->
+													<!--begin::Label-->
+													<div class="d-flex fw-semibold align-items-center">
+														<!--begin::Bullet-->
+														<div class="bullet w-8px h-3px rounded-2 me-3" style="background-color: red"></div>
+														<!--end::Bullet-->
+														<!--begin::Label-->
+														<div class="text-gray-500 flex-grow-1 me-4"><h3 class="text text-danger">المصروفات</h3></div>
+														<!--end::Label-->
+														<!--begin::Stats-->
+														<div class="fw-bolder text-gray-700 text-xxl-end"><h2 class="text text-danger">@Model.dayExpences شيكل</h2></div>
+														<!--end::Stats-->
+													</div>
+													<!--end::Label-->
+													<!--begin::Label-->
+													<div class="d-flex fw-semibold align-items-center">
+														<!--begin::Bullet-->
+														<div class="bullet w-8px h-3px rounded-2 me-3 " style="background-color: @(Model.daySammary > 0 ? "#50CD89" : "red")"></div>
+														<!--end::Bullet-->
+														<!--begin::Label-->
+														<div class="text-gray-500 flex-grow-1 me-4"><h3 class="@(Model.daySammary > 0 ? "text text-success" : "text text-danger")">المجموع</h3></div>
+														<!--end::Label-->
+														<!--begin::Stats-->
+														<div class="fw-bolder text-gray-700 text-xxl-end"><h2 class="@(Model.daySammary > 0 ? "text text-success" : "text text-danger")">@Model.daySammary شيكل</h2></div>
+														<!--end::Stats-->
+													</div>
+													<!--end::Label-->
+												</div>
+												<!--end::Labels-->
+											</div>
+											<!--end::Card body-->
+										</div>
+										<!--end::Card widget 17-->
+										
+									</div>
+									<!--end::Col-->
+									<!--begin::Col-->
+									<div class=" mr col-md-8 col-lg-8 col-xl-8 col-xxl-3 mb-md-5 mb-xl-10">
+										<!--begin::Card widget 17-->
+										<div class="card card-flush h-md-50 mb-5 mb-xl-10">
+											<!--begin::Header-->
+											<div class="card-header pt-5" style="justify-content:center;">
+												<!--begin::Title-->
+												<div class="card-title d-flex flex-column">
+													<!--begin::Info-->
+													<div class="d-flex align-items-center">
+														
+														<h1>الملخص الأسبوعي</h1>
+													</div>
+													<!--end::Info-->
+												</div>
+												<!--end::Title-->
+											</div>
+											<!--end::Header-->
+											<!--begin::Card body-->
+											<div class="card-body pt-2 pb-4 d-flex flex-wrap align-items-center">
+
+												<!--begin::Labels-->
+												<div class="d-flex flex-column content-justify-center flex-row-fluid">
+													<!--begin::Label-->
+													<div class="d-flex fw-semibold align-items-center">
+														<!--begin::Bullet-->
+														<div class="bullet w-8px h-3px rounded-2 bg-success me-3"></div>
+														<!--end::Bullet-->
+														<!--begin::Label-->
+														<div class="text-gray-500 flex-grow-1 me-4"><h3 class="text text-success">المدخولات</h3></div>
+														<!--end::Label-->
+														<!--begin::Stats-->
+														<div class="fw-bolder text-gray-700 text-xxl-end"><h2 class="text text-success">@Model.weekIncomes شيكل</h2></div>
+														<!--end::Stats-->
+													</div>
+													<!--end::Label-->
+													<!--begin::Label-->
+													<div class="d-flex fw-semibold align-items-center my-3">
+														<!--begin::Bullet-->
+														<div class="bullet w-8px h-3px rounded-2 bg-primary me-3"></div>
+														<!--end::Bullet-->
+														<!--begin::Label-->
+														<div class="text-gray-500 flex-grow-1 me-4"><h3 class="text text-primary">المشتريات</h3></div>
+														<!--end::Label-->
+														<!--begin::Stats-->
+														<div class="fw-bolder text-gray-700 text-xxl-end"><h2 class="text text-primary">@Model.weekPurchases شيكل</h2></div>
+														<!--end::Stats-->
+													</div>
+													<!--end::Label-->
+													<!--begin::Label-->
+													<div class="d-flex fw-semibold align-items-center">
+														<!--begin::Bullet-->
+														<div class="bullet w-8px h-3px rounded-2 me-3" style="background-color: red"></div>
+														<!--end::Bullet-->
+														<!--begin::Label-->
+														<div class="text-gray-500 flex-grow-1 me-4"><h3 class="text text-danger">المصروفات</h3></div>
+														<!--end::Label-->
+														<!--begin::Stats-->
+														<div class="fw-bolder text-gray-700 text-xxl-end"><h2 class="text text-danger">@Model.weekExpences شيكل</h2></div>
+														<!--end::Stats-->
+													</div>
+													<!--end::Label-->
+													<!--begin::Label-->
+													<div class="d-flex fw-semibold align-items-center">
+														<!--begin::Bullet-->
+														<div class="bullet w-8px h-3px rounded-2 me-3 " style="background-color: @(Model.weekSammary > 0 ? "#50CD89" : "red")"></div>
+														<!--end::Bullet-->
+														<!--begin::Label-->
+														<div class="text-gray-500 flex-grow-1 me-4"><h3 class="@(Model.weekSammary > 0 ? "text text-success" : "text text-danger")">المجموع</h3></div>
+														<!--end::Label-->
+														<!--begin::Stats-->
+														<div class="fw-bolder text-gray-700 text-xxl-end"><h2 class="@(Model.weekSammary > 0 ? "text text-success" : "text text-danger")">@Model.weekSammary شيكل</h2></div>
+														<!--end::Stats-->
+													</div>
+													<!--end::Label-->
+												</div>
+												<!--end::Labels-->
+											</div>
+											<!--end::Card body-->
+										</div>
+										<!--end::Card widget 17-->
+
+									</div>
+									<!--end::Col-->
+								</div>
+
+								<div class="row g-5 g-xl-10 mb-5 mb-xl-10">
+									<!--begin::Col-->
+									<div class=" mrl col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10">
+										<!--begin::Card widget 17-->
+										<div class="card card-flush h-md-50 mb-5 mb-xl-10">
+											<!--begin::Header-->
+											<div class="card-header pt-5" style=" justify-content:center;">
+												<!--begin::Title--> 
+												<div class="card-title d-flex flex-column">
+													<!--begin::Info-->
+													<div class="d-flex align-items-center">
+														
+														<h1>الملخص الشهري</h1>
+													</div>
+													<!--end::Info-->
+												</div>
+												<!--end::Title-->
+											</div>
+											<!--end::Header-->
+											<!--begin::Card body-->
+											<div class="card-body pt-2 pb-4 d-flex flex-wrap align-items-center">
+												
+												<!--begin::Labels-->
+												<div class="d-flex flex-column content-justify-center flex-row-fluid">
+													<!--begin::Label-->
+													<div class="d-flex fw-semibold align-items-center">
+														<!--begin::Bullet-->
+														<div class="bullet w-8px h-3px rounded-2 bg-success me-3"></div>
+														<!--end::Bullet-->
+														<!--begin::Label-->
+														<div class="text-gray-500 flex-grow-1 me-4"><h3 class="text text-success">المدخولات</h3></div>
+														<!--end::Label-->
+														<!--begin::Stats-->
+														<div class="fw-bolder text-gray-700 text-xxl-end"><h2 class="text text-success">@Model.monthIncomes شيكل</h2></div>
+														<!--end::Stats-->
+													</div>
+													<!--end::Label-->
+													<!--begin::Label-->
+													<div class="d-flex fw-semibold align-items-center my-3">
+														<!--begin::Bullet-->
+														<div class="bullet w-8px h-3px rounded-2 bg-primary me-3"></div>
+														<!--end::Bullet-->
+														<!--begin::Label-->
+														<div class="text-gray-500 flex-grow-1 me-4"><h3 class="text text-primary">المشتريات</h3></div>
+														<!--end::Label-->
+														<!--begin::Stats-->
+														<div class="fw-bolder text-gray-700 text-xxl-end"><h2 class="text text-primary">@Model.monthPurchases شيكل</h2></div>
+														<!--end::Stats-->
+													</div>
+													<!--end::Label-->
+													<!--begin::Label-->
+													<div class="d-flex fw-semibold align-items-center">
+														<!--begin::Bullet-->
+														<div class="bullet w-8px h-3px rounded-2 me-3" style="background-color: red"></div>
+														<!--end::Bullet-->
+														<!--begin::Label-->
+														<div class="text-gray-500 flex-grow-1 me-4"><h3 class="text text-danger">المصروفات</h3></div>
+														<!--end::Label-->
+														<!--begin::Stats-->
+														<div class="fw-bolder text-gray-700 text-xxl-end"><h2 class="text text-danger">@Model.monthExpences شيكل</h2></div>
+														<!--end::Stats-->
+													</div>
+													<!--end::Label-->
+													<!--begin::Label-->
+													<div class="d-flex fw-semibold align-items-center">
+														<!--begin::Bullet-->
+														<div class="bullet w-8px h-3px rounded-2 me-3 " style="background-color: @(Model.monthSammary > 0 ? "#50CD89" : "red")"></div>
+														<!--end::Bullet-->
+														<!--begin::Label-->
+														<div class="text-gray-500 flex-grow-1 me-4"><h3 class="@(Model.monthSammary > 0 ? "text text-success" : "text text-danger")">المجموع</h3></div>
+														<!--end::Label-->
+														<!--begin::Stats-->
+														<div class="fw-bolder text-gray-700 text-xxl-end"><h2 class="@(Model.monthSammary > 0 ? "text text-success" : "text text-danger")">@Model.monthSammary شيكل</h2></div>
+														<!--end::Stats-->
+													</div>
+													<!--end::Label-->
+
+												</div>
+												<!--end::Labels-->
+											</div>
+											<!--end::Card body-->
+										</div>
+										<!--end::Card widget 17-->
+										
+									</div>
+									<!--end::Col-->
+									<!--begin::Col-->
+									<div class=" mr col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10">
+										<!--begin::Card widget 17-->
+										<div class="card card-flush h-md-50 mb-5 mb-xl-10">
+											<!--begin::Header-->
+											<div class="card-header pt-5" style="justify-content:center;">
+												<!--begin::Title-->
+												<div class="card-title d-flex flex-column">
+													<!--begin::Info-->
+													<div class="d-flex align-items-center">
+														
+														<h1>الملخص السنوي</h1>
+														
+													</div>
+													<!--end::Info-->
+												</div>
+												<!--end::Title-->
+											</div>
+											<!--end::Header-->
+											<!--begin::Card body-->
+											<div class="card-body pt-2 pb-4 d-flex flex-wrap align-items-center">
+
+												<!--begin::Labels-->
+												<div class="d-flex flex-column content-justify-center flex-row-fluid">
+													<!--begin::Label-->
+													<div class="d-flex fw-semibold align-items-center">
+														<!--begin::Bullet-->
+														<div class="bullet w-8px h-3px rounded-2 bg-success me-3"></div>
+														<!--end::Bullet-->
+														<!--begin::Label-->
+														<div class="text-gray-500 flex-grow-1 me-4"><h3 class="text text-success">المدخولات</h3></div>
+														<!--end::Label-->
+														<!--begin::Stats-->
+														<div class="fw-bolder text-gray-700 text-xxl-end"><h2 class="text text-success">@Model.yearIncomes شيكل</h2></div>
+														<!--end::Stats-->
+													</div>
+													<!--end::Label-->
+													<!--begin::Label-->
+													<div class="d-flex fw-semibold align-items-center my-3">
+														<!--begin::Bullet-->
+														<div class="bullet w-8px h-3px rounded-2 bg-primary me-3"></div>
+														<!--end::Bullet-->
+														<!--begin::Label-->
+														<div class="text-gray-500 flex-grow-1 me-4"><h3 class="text text-primary">المشتريات</h3></div>
+														<!--end::Label-->
+														<!--begin::Stats-->
+														<div class="fw-bolder text-gray-700 text-xxl-end"><h2 class="text text-primary">@Model.yearPurchases شيكل</h2></div>
+														<!--end::Stats-->
+													</div>
+													<!--end::Label-->
+													<!--begin::Label-->
+													<div class="d-flex fw-semibold align-items-center">
+														<!--begin::Bullet-->
+														<div class="bullet w-8px h-3px rounded-2 me-3" style="background-color: red"></div>
+														<!--end::Bullet-->
+														<!--begin::Label-->
+														<div class="text-gray-500 flex-grow-1 me-4"><h3 class="text text-danger">المصروفات</h3></div>
+														<!--end::Label-->
+														<!--begin::Stats-->
+														<div class="fw-bolder text-gray-700 text-xxl-end"><h2 class="text text-danger">@Model.yearExpences شيكل</h2></div>
+														<!--end::Stats-->
+													</div>
+													<!--end::Label-->
+													<!--begin::Label-->
+													<div class="d-flex fw-semibold align-items-center">
+														<!--begin::Bullet-->
+														<div class="bullet w-8px h-3px rounded-2 me-3 " style="background-color:  @(Model.yearSammary > 0 ? "#50CD89" : "red")"></div>
+														<!--end::Bullet-->
+														<!--begin::Label-->
+														<div class="text-gray-500 flex-grow-1 me-4"><h3 class="@(Model.yearSammary > 0 ? "text text-success" : "text text-danger")">المجموع</h3></div>
+														<!--end::Label-->
+														<!--begin::Stats-->
+														<div class="fw-bolder text-gray-700 text-xxl-end"><h2 class="@(Model.yearSammary > 0 ? "text text-success" : "text text-danger")">@Model.yearSammary شيكل</h2></div>
+														<!--end::Stats-->
+													</div>
+													<!--end::Label-->
+												</div>
+												<!--end::Labels-->
+											</div>
+											<!--end::Card body-->
+											<!--end::Card body-->
+										</div>
+										<!--end::Card widget 17-->
+
+									</div>
+									<!--end::Col-->
+									
+								</div>
+
+							</div>
+						</div>
+						<!--end::Main content-->
+					</div>
+					<!--end::Card body-->
+				</div>
+				<!--end::Chart widget 24-->
+			</div>
+			<!--end::Col-->
+		</div>
+		<!--end::Row-->
+	</div>
+	<!--end::Content container-->
+</div>
+<!--end::Content-->
+
+
+@section Scripts
+{
+	
+
+}
