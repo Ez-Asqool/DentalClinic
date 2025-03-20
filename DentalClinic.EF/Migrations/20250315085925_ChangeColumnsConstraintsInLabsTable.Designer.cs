@@ -4,6 +4,7 @@ using DentalClinic.EF.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DentalClinic.EF.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250315085925_ChangeColumnsConstraintsInLabsTable")]
+    partial class ChangeColumnsConstraintsInLabsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -247,9 +250,6 @@ namespace DentalClinic.EF.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("FinanceId")
-                        .HasColumnType("int");
-
                     b.Property<int>("IsDeleted")
                         .HasColumnType("int");
 
@@ -259,6 +259,7 @@ namespace DentalClinic.EF.Migrations
                         .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("Notice")
+                        .IsRequired()
                         .HasMaxLength(1500)
                         .HasColumnType("nvarchar(1500)");
 
@@ -290,8 +291,6 @@ namespace DentalClinic.EF.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("FinanceId");
 
                     b.HasIndex("PatientId");
 
@@ -419,7 +418,7 @@ namespace DentalClinic.EF.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<double?>("Discount")
+                    b.Property<double>("Discount")
                         .HasMaxLength(5)
                         .HasColumnType("float");
 
@@ -427,6 +426,7 @@ namespace DentalClinic.EF.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Notice")
+                        .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
@@ -477,17 +477,8 @@ namespace DentalClinic.EF.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("FinanceId")
-                        .HasColumnType("int");
-
                     b.Property<int>("IsDeleted")
                         .HasColumnType("int");
-
-                    b.Property<int>("IsPaid")
-                        .HasColumnType("int");
-
-                    b.Property<double>("TotalPrice")
-                        .HasColumnType("float");
 
                     b.Property<int>("Type")
                         .HasMaxLength(8)
@@ -500,8 +491,6 @@ namespace DentalClinic.EF.Migrations
 
                     b.HasIndex("AppointmentId")
                         .IsUnique();
-
-                    b.HasIndex("FinanceId");
 
                     b.ToTable("Visits");
                 });
@@ -549,17 +538,11 @@ namespace DentalClinic.EF.Migrations
 
             modelBuilder.Entity("DentalClinic.Core.Models.Lab", b =>
                 {
-                    b.HasOne("DentalClinic.Core.Models.Finance", "Finance")
-                        .WithMany()
-                        .HasForeignKey("FinanceId");
-
                     b.HasOne("DentalClinic.Core.Models.Patient", "Patient")
                         .WithMany("Labs")
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Finance");
 
                     b.Navigation("Patient");
                 });
@@ -601,13 +584,7 @@ namespace DentalClinic.EF.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DentalClinic.Core.Models.Finance", "Finance")
-                        .WithMany()
-                        .HasForeignKey("FinanceId");
-
                     b.Navigation("Appointment");
-
-                    b.Navigation("Finance");
                 });
 
             modelBuilder.Entity("DentalClinic.Core.Models.Appointment", b =>

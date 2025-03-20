@@ -34,6 +34,7 @@ namespace DentalClinic.EF.Data
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Treatment> Treatments { get; set; }    
         public DbSet<Finance> Finances { get; set; }    
+        public DbSet<Lab> Labs { get; set; }    
         
 
 

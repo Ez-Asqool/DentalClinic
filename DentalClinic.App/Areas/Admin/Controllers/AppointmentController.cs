@@ -64,7 +64,7 @@ namespace DentalClinic.App.Areas.Admin.Controllers
                         return StatusCode(400);
 
                 var newAppointment = _mapper.Map<Appointment>(addAppointmentVM);
-                
+                newAppointment.TimeTo = newAppointment.TimeFrom.AddMinutes(30);
                 _appointmentRepository.Add(newAppointment); 
                 return StatusCode(200);
             }
@@ -87,7 +87,7 @@ namespace DentalClinic.App.Areas.Admin.Controllers
         public IActionResult Today()
         {
             var todayAppointments = _appointmentRepository.FindAll(x => x.Date.Date == DateTime.Now.Date && x.IsDeleted ==0, ["Doctor", "Patient", "Visit"]);
-            var todayAppointmentsVm = _mapper.Map<List<TodayAppointmentVM>>(todayAppointments);
+			List<TodayAppointmentVM> todayAppointmentsVm = _mapper.Map<List<TodayAppointmentVM>>(todayAppointments);
             return View(todayAppointmentsVm);
         }
 

@@ -49,16 +49,21 @@ License: For each use you must have a valid license purchased only from above li
 		/*background-image: none !important;      /* Remove any background images or gradients */
 		/*}*/
 
+		@@font-face {
+			font-family: 'Great Vibes';
+			src: url('/css/GreatVibes-Regular.woff2') format('woff2'),
+				 url('/css/GreatVibes-Regular.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+
 		.clinic-title {
 			font-size: 38px; /* Bold and readable size */
 			font-weight: bold; /* Strong emphasis */
-			font-family: 'Arial', sans-serif; /* Clean sans-serif font */
+			font-family: 'Great Vibes', 'Arial', sans-serif; /* Use your downloaded font first */
 			margin-top: 18px; /* Move text a bit down */
 			text-shadow: -3px 3px 10px rgba(0, 0, 0, 0.4); /* Heavy shadow effect */
-			/*color: royalblue;*/	
-			padding-right: 200px;
 		}
-
 		.modal-content input.form-control {
 			text-align: center !important;
 		}
@@ -72,7 +77,7 @@ License: For each use you must have a valid license purchased only from above li
 			font-size: 18px; /* Adjust as needed */
 			color: #f26419; /* Example color */
 			display: inline-block; /* Keep elements in one line */
-			width: 210px;
+			width: 350px;
 		}
 
 		.date-label, .time-label {
@@ -129,7 +134,7 @@ License: For each use you must have a valid license purchased only from above li
 		<!--begin::Page-->
 		<div class="app-page flex-column flex-column-fluid" id="kt_app_page">
 			<!--begin::Header-->
-			<div id="kt_app_header" class="app-header">
+			<div id="kt_app_header" class="app-header bg-body">
 				<!--begin::Header container-->
 				<div class="app-container container-fluid d-flex align-items-stretch justify-content-between" id="kt_app_header_container" >
 					<!--begin::Sidebar mobile toggle-->
@@ -186,18 +191,7 @@ License: For each use you must have a valid license purchased only from above li
 						<!--begin::Middle Text-->
 						<div class="row text-center flex-grow-1">
 							<h3 class="col clinic-title">عيادة سيلينا لطب وجراحة الفم والأسنان</h3>
-								<div class=" date-time-container">
-									<div class="date-label">
-									<i class="fa-regular fa-calendar-days icon-blue"></i>
-									  اليوم:
-									  <span id="currentDate"></span>
-									</div>
-									<div class="time-label">
-									<i class="fa-regular fa-clock icon-blue"></i>
-									  الساعة:
-									  <span id="currentTime"></span>
-									</div>
-								  </div>
+								
 						</div>
 						<!--end::Middle Text-->
 						<!--begin::Navbar-->
@@ -511,7 +505,7 @@ License: For each use you must have a valid license purchased only from above li
 							<!--<img alt="Logo" src="~/assets/assets/media/logos/default.svg" class="h-25px app-sidebar-logo-default theme-light-show" /> -->
 							<p class="silena h-25px app-sidebar-logo-default theme-light-show">Dental Clinic</p>
 							<img alt="Logo" src="~/assets/assets/media/logos/default-dark.svg" class="h-25px app-sidebar-logo-default theme-dark-show" />
-							<img alt="Logo" src="~/assets/assets/media/logos/default-small.svg" class="h-20px app-sidebar-logo-minimize" />
+							<img alt="Logo" src="~/AppImages//logoLogo.png" class=" app-sidebar-logo-minimize" width="30px" hight="35px" />
 						</a>
 						<!--end::Logo image-->
 						<!--begin::Sidebar toggle-->
@@ -765,6 +759,41 @@ License: For each use you must have a valid license purchased only from above li
 										<!--end:Menu item-->
 									</div>
 									<!--end:Menu sub-->
+
+								</div>
+								<!--end:Menu item-->
+								<!--begin:Menu item-->
+								<div data-kt-menu-trigger="click" class="menu-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Lab" ? "here show" : "") menu-accordion">
+									<!--begin:Menu link-->
+									<span class="menu-link">
+										<span class="menu-icon">
+											<!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+											<span class="svg-icon svg-icon-2">
+												<svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#1f1f1f"><path d="M181.33-120q-44.85 0-63.76-41.17-18.9-41.16 11.1-75.5L368-513.33v-260h-48q-14.17 0-23.75-9.62t-9.58-23.83q0-14.22 9.58-23.72 9.58-9.5 23.75-9.5h320q14.17 0 23.75 9.62 9.58 9.61 9.58 23.83 0 14.22-9.58 23.72-9.58 9.5-23.75 9.5h-48v260l239.33 276.66q30 34.34 11.1 75.5Q823.52-120 778.67-120H181.33Zm73.34-100h450.66l-152-176.67H406.67L254.67-220Zm-81.34 33.33h613.34L525.33-489.33v-284h-90.66v284L173.33-186.67ZM480-480Z"/></svg>											</span>
+											<!--end::Svg Icon-->
+										</span>
+										<span class="menu-title" style="font-size: 20px;">المعمل</span>
+										<span class="menu-arrow"></span>
+									</span>
+									<!--end:Menu link-->
+									<!--begin:Menu sub-->
+									<div class="menu-sub menu-sub-accordion">
+										<!--begin:Menu item-->
+										<div class="menu-item">
+											<!--begin:Menu link-->
+											<a class="menu-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Lab" && ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")" asp-area="Admin" asp-controller="Lab" asp-action="Index">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+												<span class="menu-title" style="font-size: 17px;">المعمل</span>
+											</a>
+											<!--end:Menu link-->
+										</div>
+										<!--end:Menu item-->
+										
+									</div>
+									<!--end:Menu sub-->
+
 								</div>
 								<!--end:Menu item-->
 
@@ -799,6 +828,20 @@ License: For each use you must have a valid license purchased only from above li
 								<a href="https://keenthemes.com" target="_blank" class="text-gray-800 text-hover-primary">Keenthemes</a>
 							</div>
 							<!--end::Copyright-->
+							<div class="text-dark order-2 order-md-1">
+								<div class=" date-time-container">
+									<span class="date-label">
+										<i class="fa-regular fa-calendar-days icon-blue"></i>
+										اليوم:
+										<span id="currentDate"></span>
+									</span>
+									<span class="time-label">
+										<i class="fa-regular fa-clock icon-blue"></i>
+										الساعة:
+										<span id="currentTime"></span>
+									</span>
+								</div>
+							</div>
 							<!--begin::Menu-->
 							<ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
 								<li class="menu-item">

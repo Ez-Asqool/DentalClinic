@@ -65,5 +65,7 @@ namespace DentalClinic.Core.Models
 
         //public List<Visit> Visits { get; set; }
 
+        public List<Lab> Labs { get; set; }
+
     }
 }

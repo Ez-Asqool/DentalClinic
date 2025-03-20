@@ -21,7 +21,7 @@ namespace DentalClinic.Core.Models
         public string TypeOfTreatment { get; set; }
 
 
-        [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(1000)]
+        [MaxLength(1000)]
         public string? Notice { get; set; }
 
 
@@ -29,7 +29,7 @@ namespace DentalClinic.Core.Models
         public double Price { get; set; }
 
 
-        [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(5)]
+        [MaxLength(5)]
         public double? Discount { get; set; }
 
 

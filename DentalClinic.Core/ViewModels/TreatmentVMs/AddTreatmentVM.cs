@@ -18,14 +18,13 @@ namespace DentalClinic.Core.ViewModels.TreatmentVMs
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(50)]
         public string TypeOfTreatment { get; set; }
 
-        [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(1000)]
+        [MaxLength(1000)]
         public string? Notice { get; set; }
 
         [Required(ErrorMessage = Messages.ErrorMessage)]
         [Range(0, 99999, ErrorMessage = "Price must be between 0 and 99999.")]
         public double Price { get; set; }
 
-        [Required(ErrorMessage = Messages.ErrorMessage)]
         [Range(0, 99999, ErrorMessage = "Discount must be between 0 and 99999.")]
         public double? Discount { get; set; }
 

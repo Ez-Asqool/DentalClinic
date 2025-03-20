@@ -19,6 +19,13 @@ namespace DentalClinic.Core.Models
         [Required(ErrorMessage = Messages.ErrorMessage), MaxLength(8)]
         public VisitType Type { get; set; }
 
+		[Required(ErrorMessage = Messages.ErrorMessage)]
+
+		public double TotalPrice { get; set; }
+
+        [Required(ErrorMessage = Messages.ErrorMessage)]
+        public int IsPaid { get; set; } = 0;   
+
 
         //public List<Image> Images { get; set; }
 
@@ -32,11 +39,14 @@ namespace DentalClinic.Core.Models
         public int AppointmentId { get; set; }
         public Appointment Appointment { get; set; }
 
-
-        //public int PatientId { get; set; }
-        //public Patient Patient { get; set; }
-
+		public int? FinanceId { get; set; }
+		public Finance? Finance { get; set; }
 
 
-    }
+		//public int PatientId { get; set; }
+		//public Patient Patient { get; set; }
+
+
+
+	}
 }

@@ -25,6 +25,7 @@ builder.Services.AddTransient(typeof(IVisitRepository), typeof(VisitRepository))
 builder.Services.AddTransient(typeof(ITreatmentRepository), typeof(TreatmentRepository));
 builder.Services.AddTransient(typeof(IImageRepository), typeof(ImageRepository));
 builder.Services.AddTransient(typeof(IFinanceRepository), typeof(FinanceRepository));
+builder.Services.AddTransient(typeof(ILabRepository), typeof(LabRepository));
 builder.Services.AddTransient(typeof(IImageService), typeof(ImageService));
 
 

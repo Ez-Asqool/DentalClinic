@@ -4,6 +4,7 @@ using DentalClinic.Core.ViewModels.AppointmentVMs;
 using DentalClinic.Core.ViewModels.ClinicVMs;
 using DentalClinic.Core.ViewModels.DoctorVMs;
 using DentalClinic.Core.ViewModels.FinanceVMs;
+using DentalClinic.Core.ViewModels.LabVMs;
 using DentalClinic.Core.ViewModels.PatientVMs;
 using DentalClinic.Core.ViewModels.RoomVMs;
 using DentalClinic.Core.ViewModels.VisitVMs;
@@ -43,6 +44,11 @@ namespace DentalClinic.App.AppServises.Mapper
             //Finance
             CreateMap<AddFinanceVM, Finance>();
             CreateMap<Finance, UpdateFinanceVM>().ReverseMap();
+
+            //Lab
+            CreateMap<AddLabVM, Lab>(); 
+            CreateMap<Lab, DetailsLabVM>();
+            CreateMap<Lab, UpdateLabVM>().ReverseMap();
 
         }
     }

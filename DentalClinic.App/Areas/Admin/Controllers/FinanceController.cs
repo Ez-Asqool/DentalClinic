@@ -11,13 +11,13 @@ namespace DentalClinic.App.Areas.Admin.Controllers
     public class FinanceController : AdminBaseController
     {
         private readonly IFinanceRepository _financeRepository;
-        private readonly ITreatmentRepository _treatmentRepository;
+        private readonly IVisitRepository _visitRepository;
         private readonly IMapper _mapper;
 
-        public FinanceController(IFinanceRepository financeRepository, ITreatmentRepository treatmentRepository, IMapper mapper)
+        public FinanceController(IFinanceRepository financeRepository, IVisitRepository visitRepository, IMapper mapper)
         {
             _financeRepository = financeRepository;
-			_treatmentRepository = treatmentRepository;
+			_visitRepository = visitRepository;
             _mapper = mapper;   
         }
 
@@ -52,10 +52,10 @@ namespace DentalClinic.App.Areas.Admin.Controllers
             var dayIncomes = 0.0;
 			try
 			{
-				var dayTreatments = _treatmentRepository.FindAll(x => x.CreatedAt.Day == date.Day && x.IsDeleted == 0);
-				foreach (var treatment in dayTreatments)
+				var dayVsits = _visitRepository.FindAll(x => x.CreatedAt.Day == date.Day && x.IsDeleted == 0 && x.IsPaid == 1 );
+				foreach (var visit in dayVsits)
 				{
-					dayIncomes += treatment.Total;
+					dayIncomes += visit.TotalPrice;
 				}
 			}
 			catch (Exception ex) { }
@@ -113,10 +113,10 @@ namespace DentalClinic.App.Areas.Admin.Controllers
 			var weekIncomes = 0.0;
 			try
 			{
-				var weekTreatments = _treatmentRepository.FindAll(x => x.CreatedAt.Date >= startOfWeek.Date && x.CreatedAt.Date <= endOfWeek.Date && x.IsDeleted == 0);
-				foreach (var treatment in weekTreatments)
+				var weekVisits = _visitRepository.FindAll(x => x.CreatedAt.Date >= startOfWeek.Date && x.CreatedAt.Date <= endOfWeek.Date && x.IsDeleted == 0 && x.IsPaid == 1);
+				foreach (var visit in weekVisits)
 				{
-					weekIncomes += treatment.Total;
+					weekIncomes += visit.TotalPrice;
 				}
 			}
 			catch (Exception ex) { }
@@ -159,10 +159,10 @@ namespace DentalClinic.App.Areas.Admin.Controllers
 			var monthIncomes = 0.0;
 			try
 			{
-				var monthTreatments = _treatmentRepository.FindAll(x => x.CreatedAt.Month == date.Month && x.IsDeleted == 0);
-				foreach (var treatment in monthTreatments)
+				var monthVisits = _visitRepository.FindAll(x => x.CreatedAt.Month == date.Month && x.IsDeleted == 0 && x.IsPaid == 1);
+				foreach (var visit in monthVisits)
 				{
-					monthIncomes += treatment.Total;
+					monthIncomes += visit.TotalPrice;
 				}
 			}
 			catch (Exception ex) { }
@@ -206,10 +206,10 @@ namespace DentalClinic.App.Areas.Admin.Controllers
 			var yearIncomes = 0.0;
 			try
 			{
-				var yearTreatments = _treatmentRepository.FindAll(x => x.CreatedAt.Year == date.Year && x.IsDeleted == 0);
-				foreach (var treatment in yearTreatments)
+				var yearVisits = _visitRepository.FindAll(x => x.CreatedAt.Year == date.Year && x.IsDeleted == 0 && x.IsPaid == 1);
+				foreach (var visit in yearVisits)
 				{
-					yearIncomes += treatment.Total;
+					yearIncomes += visit.TotalPrice;
 				}
 			}
 			catch (Exception ex){}

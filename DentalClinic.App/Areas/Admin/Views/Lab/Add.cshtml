@@ -1,0 +1,158 @@
+﻿@using DentalClinic.Core.Consts
+@model DentalClinic.Core.ViewModels.LabVMs.AddLabVM
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
+
+
+
+<div class="modal fade" id="kt_modal_new_item" tabindex="-1" data-bs-backdrop="static" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Form-->
+            <form class="form" method="post" enctype="multipart/form-data" id="kt_modal_new_item_form">
+                <!--begin::Modal header-->
+                <div class="modal-header" id="kt_modal_new_item_header">
+                    <!--begin::Modal title-->
+                    <h1>إرسال عينة جديدة</h1>
+                    <!--end::Modal title-->
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body py-10 px-lg-17">
+                    <!--begin::Scroll-->
+                    <div class="scroll-y me-n7 pe-7" id="kt_modal_new_item_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_new_item_header" data-kt-scroll-wrappers="#kt_modal_new_item_scroll" data-kt-scroll-offset="300px">
+                        <!--begin::Input group-->
+                        <!--begin::Input group-->
+                        <div class="flex-column mb-5 fv-row">
+                            <!--begin::Label-->
+                            <label class="required fs-3 fw-semibold mb-2">اسم المريض</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <select id="patientSearch" class="form-control">
+                                <option value="">ابحث عن المريض...</option>
+                            </select>
+                            <input type="hidden" id="selectedPatientId" asp-for="PatientId" required>
+                            <!--end::Input-->
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class=" flex-column mb-5 fv-row">
+                            <!--begin::Label-->
+                            <label class="required fs-3 fw-semibold mb-2" asp-for="LabName">اسم المعمل</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <select asp-for="LabName" class="form-control fs-4 form-control-solid" required>
+                                <option value="معمل تونس">معمل تونس</option>
+                                <option value="معمل الخليج">معمل الخليج</option>
+                            </select>
+                            <!--end::Input-->
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="row mb-5">
+                            <!--begin::Col-->
+                            <div class="row mb-5">
+                                <div class="col-md-6 fv-row">
+                                    <label class="required fs-3 fw-semibold mb-2" asp-for="SampleName">اسم العينة</label>
+                                    <input type="text" asp-for="SampleName" class="form-control fs-4 form-control-solid" required />
+                                </div>
+                                <div class="col-md-6 fv-row">
+                                    <label class="required fs-3 fw-semibold mb-2" asp-for="SampleType">نوع العينة</label>
+                                    <select asp-for="SampleType" class="form-control fs-4 form-control-solid" required>
+                                        <option value="@SampleType.New">جديدة</option>
+                                        <option value="@SampleType.Repair">إصلاح</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="row mb-5">
+                            <!--begin::Col-->
+                            <div class="row mb-5">
+                                <div class="col-md-6 fv-row">
+                                    <label class="required fs-3 fw-semibold mb-2" asp-for="Quantity">الكمية</label>
+                                    <input type="number" asp-for="Quantity" class="form-control fs-4 form-control-solid" required />
+                                </div>
+                                <div class="col-md-6 fv-row">
+                                    <label class="required fs-3 fw-semibold mb-2" asp-for="Price">السعر</label>
+                                    <input type="number" asp-for="Price" class="form-control fs-4 form-control-solid" required />
+                                </div>
+                            </div>
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="row mb-5">
+                            <!--begin::Col-->
+                            <div class="row mb-5">
+                                <div class="col-md-6 fv-row">
+                                    <label class="required fs-3 fw-semibold mb-2" asp-for="SendingDate">تاريخ الارسال</label>
+                                    <input type="date" asp-for="SendingDate" class="form-control fs-4 form-control-solid" required />
+                                </div>
+                                <div class="col-md-6 fv-row">
+                                    <label class="required fs-3 fw-semibold mb-2" asp-for="ReceivingDate">تاريخ الاستلام المقرر</label>
+                                    <input type="date" asp-for="ReceivingDate" class="form-control fs-4 form-control-solid" required />
+                                </div>
+                            </div>
+                        </div>
+                        <!--end::Input group-->
+                        
+                        <!--begin::Input group-->
+                        <div class=" flex-column mb-5 fv-row">
+                            <!--begin::Label-->
+                            <label class=" fs-3 fw-semibold mb-2" asp-for="Notice">ملاحظة</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <textarea asp-for="Notice" class="form-control fs-4 form-control-solid" rows="4"></textarea>
+                            <!--end::Input-->
+                        </div>
+                        <!--end::Input group-->
+
+                        
+                    </div>
+                        <!--end::Scroll-->
+                </div>
+                <!--end::Modal body-->
+                <!--begin::Modal footer-->
+                <div class="modal-footer flex-center">
+                    <!--begin::Button-->
+                    <button type="reset" data-bs-dismiss="modal" class="btn btn-light me-3 fs-4 btn-discard">إخفاء</button>
+                    <!--end::Button-->
+                    <!--begin::Button-->
+                    <button type="submit" id="kt_modal_new_item_submit" class="btn btn-primary">
+                        <span class="indicator-label fs-4">إضافة</span>
+                        <span class="indicator-progress">
+                            Please wait...
+                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                        </span>
+                    </button>
+                    <!--end::Button-->
+                </div>
+                <!--end::Modal footer-->
+            </form>
+            <!--end::Form-->
+        </div>
+    </div>
+</div>
+<!--end::Modal - New Item-->
+

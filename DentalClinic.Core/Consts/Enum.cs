@@ -29,4 +29,10 @@ namespace DentalClinic.Core.Consts
         Expense,    //مصروفات
     }
 
+    public enum SampleType
+    {
+        New,
+		Repair
+	}
+
 }
